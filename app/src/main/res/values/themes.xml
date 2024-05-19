@@ -2,8 +2,17 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.BuyPhonesOnline" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!--         <item name="colorPrimary">@color/my_light_primary</item>-->
+<!--        <item name="android:windowBackground">@drawable/gradient_drawable</item>-->
+<!--        <item name="android:windowBackground">@drawable/color</item>-->
+        <item name="android:navigationBarColor">@color/white</item>
     </style>
 
     <style name="Theme.BuyPhonesOnline" parent="Base.Theme.BuyPhonesOnline" />
+
+
+    <style name="ThemeProduct" parent="Base.Theme.BuyPhonesOnline" >
+        <item name="android:windowBackground">@drawable/background_product</item>
+    </style>
+
 </resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:background="@drawable/color"
+    tools:context=".HomeFragment" >
+
+    <SearchView
+        android:id="@+id/search_home"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@drawable/searchview_backround">
+
+    </SearchView>
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="149dp"-->
+<!--        android:layout_below="@id/search_home"-->
+<!--        android:layout_marginTop="36dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:background="@drawable/banner_background"-->
+<!--        android:src="@drawable/banner" />-->
+
+
+
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_home">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="149dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/rectangle14">
+
+            </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPhoneChargeCord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relativeLayout1"
+                android:layout_marginTop="16dp" />
+
+            <View
+                android:layout_below="@id/rvPhoneChargeCord"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+
+</RelativeLayout>
