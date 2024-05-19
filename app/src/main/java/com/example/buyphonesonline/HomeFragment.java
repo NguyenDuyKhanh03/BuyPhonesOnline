@@ -5,14 +5,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.buyphonesonline.adapter.ProductListAdapter;
+import com.example.buyphonesonline.handler.DatabaseHandler;
 import com.example.buyphonesonline.models.Product;
+import com.example.buyphonesonline.repository.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +28,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     List<Product> products=new ArrayList<>();
-    CategoryAdapter adapter;
+    ProductListAdapter adapter;
     RecyclerView rvProduct;
 
     public HomeFragment() {
@@ -40,78 +43,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        products.add(new Product(
-                1,
-                "https://firebasestorage.googleapis.com/v0/b/fir-72119.appspot.com/o/adaptersactypecpd.png?alt=media&token=89c150a9-959b-4f77-a09f-228f0b2f1cbd",
-                "Cáp Dây Rút Type C ",
-                300000,
-                20,
-                1
 
-        ));
-        products.add(new Product(
-                1,
-                "https://firebasestorage.googleapis.com/v0/b/fir-72119.appspot.com/o/adapter-chuyen-doi-type-c.png?alt=media&token=c1523ccd-c73e-483d-baaf-9797749b859c",
-                "Cáp Dây Rút Type C ",
-                300000,
-                20,
-                1
-
-        ));
-        products.add(new Product(
-                1,
-                "https://firebasestorage.googleapis.com/v0/b/fir-72119.appspot.com/o/adapter-chuyen-doi-type-c.png?alt=media&token=c1523ccd-c73e-483d-baaf-9797749b859c",
-                "Cáp Dây Rút Type C ",
-                300000,
-                20,
-                1
-
-        ));
-        products.add(new Product(
-                1,
-                "https://firebasestorage.googleapis.com/v0/b/fir-72119.appspot.com/o/adaptersactypecpd.png?alt=media&token=89c150a9-959b-4f77-a09f-228f0b2f1cbd",
-                "Cáp Dây Rút Type C ",
-                300000,
-                20,
-                1
-
-        ));
-        products.add(new Product(
-                1,
-                "https://firebasestorage.googleapis.com/v0/b/fir-72119.appspot.com/o/cap-da-nang.png?alt=media&token=8e3c218f-0fe7-4626-b5c9-383e1d285874",
-                "Cáp Dây Rút Type C ",
-                300000,
-                20,
-                1
-
-        ));
-        products.add(new Product(
-                1,
-                "https://firebasestorage.googleapis.com/v0/b/fir-72119.appspot.com/o/cap-da-nang.png?alt=media&token=8e3c218f-0fe7-4626-b5c9-383e1d285874",
-                "Cáp Dây Rút Type C ",
-                300000,
-                20,
-                1
-
-        ));
-        products.add(new Product(
-                1,
-                "https://firebasestorage.googleapis.com/v0/b/fir-72119.appspot.com/o/adaptersactypecpd.png?alt=media&token=89c150a9-959b-4f77-a09f-228f0b2f1cbd",
-                "Cáp Dây Rút Type C ",
-                300000,
-                20,
-                1
-
-        ));
-        products.add(new Product(
-                1,
-                "https://firebasestorage.googleapis.com/v0/b/fir-72119.appspot.com/o/adaptersactypecpd.png?alt=media&token=89c150a9-959b-4f77-a09f-228f0b2f1cbd",
-                "Cáp Dây Rút Type C ",
-                300000,
-                20,
-                1
-
-        ));
     }
 
     @Override
@@ -124,11 +56,16 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        DatabaseHandler databaseHandler=new DatabaseHandler(view.getContext());
+        ProductRepository productRepository=new ProductRepository(databaseHandler);
+        products=productRepository.getAllProducts();
 
         rvProduct=view.findViewById(R.id.rvPhoneChargeCord);
-        adapter=new CategoryAdapter(products);
-        rvProduct.setLayoutManager(new GridLayoutManager(view.getContext(),2));
+        adapter=new ProductListAdapter(products);
+        rvProduct.setLayoutManager(new LinearLayoutManager(view.getContext(),RecyclerView.HORIZONTAL,false));
         rvProduct.setAdapter(adapter);
-        rvProduct.addItemDecoration(new CharacterItemDecoration(50));
+        rvProduct.addItemDecoration(new HorizontalItemDecoration(50));
+
+
     }
 }

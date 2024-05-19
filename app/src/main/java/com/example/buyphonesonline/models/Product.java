@@ -7,14 +7,32 @@ public class Product {
     private double price;
     private int quantity;
     private int categoryId;
+    private int quantitySold;
+    public Product(String image, String name, double price, int quantity, int categoryId) {
+        this.image = image;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.categoryId = categoryId;
+    }
 
-    public Product(int id, String image, String name, double price, int quantity, int categoryId) {
+    public Product(int id, String image, String name, double price, int quantity, int categoryId, int quantitySold) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.categoryId = categoryId;
+        this.quantitySold = quantitySold;
+    }
+
+    public Product(String image, String name, double price, int quantity, int categoryId, int quantitySold) {
+        this.image = image;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.categoryId = categoryId;
+        this.quantitySold = quantitySold;
     }
 
     // Getters and Setters
@@ -64,5 +82,13 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public int quantitySold() {
+        return quantitySold;
+    }
+
+    public void setQuantitySold(int quantitySold) {
+        this.quantitySold = quantitySold;
     }
 }
