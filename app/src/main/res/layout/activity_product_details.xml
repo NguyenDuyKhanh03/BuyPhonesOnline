@@ -89,6 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/frame_layout"
         android:layout_centerHorizontal="true"
+        android:clickable="false"
         android:orientation="horizontal">
 
 
@@ -106,7 +107,6 @@
                 android:layout_width="45dp"
                 android:layout_height="49dp"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"
                 android:src="@drawable/sonyheadphones" />
         </FrameLayout>
 
@@ -124,7 +124,6 @@
                 android:layout_width="45dp"
                 android:layout_height="49dp"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"
                 android:src="@drawable/sonyheadphones" />
         </FrameLayout>
 
@@ -141,7 +140,6 @@
                 android:layout_width="45dp"
                 android:layout_height="49dp"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"
                 android:src="@drawable/sonyheadphones" />
         </FrameLayout>
 

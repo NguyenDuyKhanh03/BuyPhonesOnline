@@ -25,6 +25,7 @@ public class ProductRepository {
         values.put(DatabaseHandler.CATEGORY_NAME,product.getName());
         values.put(DatabaseHandler.PRODUCT_QUANTITY,product.getQuantity());
         values.put(DatabaseHandler.PRODUCT_PRICE,product.getPrice());
+        values.put(DatabaseHandler.PRODUCT_DESCRIPTION,product.description());
         values.put(DatabaseHandler.PRODUCT_IMAGE,product.getImage());
         values.put(DatabaseHandler.PRODUCT_CATEGORY_ID,product.getCategoryId());
         values.put(DatabaseHandler.PRODUCT_QUANTITY_SOLD,0);
@@ -44,9 +45,10 @@ public class ProductRepository {
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getDouble(3),
-                    cursor.getInt(4),
+                    cursor.getString(4),
                     cursor.getInt(5),
-                    cursor.getInt(6)
+                    cursor.getInt(6),
+                    cursor.getInt(7)
             );
             products.add(product);
             cursor.moveToNext();
@@ -62,6 +64,7 @@ public class ProductRepository {
                 DatabaseHandler.PRODUCT_IMAGE,
                 DatabaseHandler.PRODUCT_NAME,
                 DatabaseHandler.PRODUCT_PRICE,
+                DatabaseHandler.PRODUCT_DESCRIPTION,
                 DatabaseHandler.PRODUCT_QUANTITY,
                 DatabaseHandler.PRODUCT_CATEGORY_ID,
                 DatabaseHandler.PRODUCT_QUANTITY_SOLD
@@ -78,11 +81,12 @@ public class ProductRepository {
                 int id=cursor.getInt(0);
                 String image = cursor.getString(1);
                 double price = cursor.getDouble(3);
-                int quantity = cursor.getInt(4);
-                int categoryId = cursor.getInt(5);
-                int quantitySold = cursor.getInt(6);
+                String des = cursor.getString(4);
+                int quantity = cursor.getInt(5);
+                int categoryId = cursor.getInt(6);
+                int quantitySold = cursor.getInt(7);
 
-                product = new Product(id, image, name, price, quantity, categoryId, quantitySold);
+                product = new Product(id, image, name, price,des, quantity, categoryId, quantitySold);
             }
             cursor.close();
         }

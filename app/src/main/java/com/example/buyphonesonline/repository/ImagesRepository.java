@@ -36,8 +36,10 @@ public class ImagesRepository {
 
 
         String query = "SELECT * FROM " + DatabaseHandler.TABLE_IMAGE +
-                " JOIN " + DatabaseHandler.TABLE_PRODUCT + " ON " + relation_id + " = " + DatabaseHandler.TABLE_PRODUCT + "." + DatabaseHandler.PRODUCT_ID +
-                " WHERE " + DatabaseHandler.TABLE_IMAGE + "." + DatabaseHandler.IMAGE_TYPE + " = 'product'";
+                " JOIN " + DatabaseHandler.TABLE_PRODUCT +
+                " ON " + DatabaseHandler.TABLE_IMAGE + "." + DatabaseHandler.IMAGE_RELATION_ID+ " = " + DatabaseHandler.TABLE_PRODUCT + "." + DatabaseHandler.PRODUCT_ID +
+                " WHERE " + DatabaseHandler.TABLE_IMAGE + "." + DatabaseHandler.IMAGE_RELATION_ID + " = "+ relation_id + " AND " +
+                DatabaseHandler.TABLE_IMAGE + "." + DatabaseHandler.IMAGE_TYPE + " = 'product'";
 
 
         Cursor cursor = db.rawQuery(query,null);
@@ -48,7 +50,7 @@ public class ImagesRepository {
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getInt(3),
-                    cursor.getString(5)
+                    cursor.getString(4)
             );
             images.add(images1);
             cursor.moveToNext();

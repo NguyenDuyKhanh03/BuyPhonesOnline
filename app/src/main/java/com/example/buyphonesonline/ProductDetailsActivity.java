@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.buyphonesonline.databinding.ActivityProductDetailsBinding;
 import com.example.buyphonesonline.handler.DatabaseHandler;
 import com.example.buyphonesonline.models.Images;
-import com.example.buyphonesonline.models.Product;
 import com.example.buyphonesonline.repository.ImagesRepository;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         Intent intent=getIntent();
-        int id=intent.getIntExtra("id_product",1);
+        int id=intent.getIntExtra("id_product",2);
         String url=intent.getStringExtra("image");
         String name=intent.getStringExtra("name");
         double price=intent.getDoubleExtra("price",0);
@@ -70,28 +70,36 @@ public class ProductDetailsActivity extends AppCompatActivity {
         binding.frameImage1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                binding.imageMain.setImageDrawable(binding.image1.getDrawable());
-                Glide.with(ProductDetailsActivity.this)
-                        .load(images.get(0).url())
-                        .into(binding.imageMain);
+                if(images.get(0)!=null) {
+                    Glide.with(binding.imageMain).load(images.get(0).url()).into(binding.imageMain);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Null",Toast.LENGTH_LONG).show();
+                }
+
             }
         });
         binding.frameImage2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                binding.imageMain.setImageDrawable(binding.image2.getDrawable());
-                Glide.with(ProductDetailsActivity.this)
-                        .load(images.get(1).url())
-                        .into(binding.imageMain);
+                if(images.get(1)!=null) {
+                    Glide.with(binding.imageMain).load(images.get(1).url()).into(binding.imageMain);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Null",Toast.LENGTH_LONG).show();
+                }
+
             }
         });
         binding.frameImage3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                binding.imageMain.setImageDrawable(binding.image3.getDrawable());
-                Glide.with(ProductDetailsActivity.this)
-                        .load(images.get(2).url())
-                        .into(binding.imageMain);
+                if(images.get(2)!=null) {
+                    Glide.with(binding.imageMain).load(images.get(2).url()).into(binding.imageMain);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Null",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

@@ -39,6 +39,17 @@ public class Product {
         this.quantitySold = quantitySold;
     }
 
+    public Product(int id, String image, String name, double price, String description, int quantity, int categoryId, int quantitySold) {
+        this.id = id;
+        this.image = image;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.quantity = quantity;
+        this.categoryId = categoryId;
+        this.quantitySold = quantitySold;
+    }
+
     // Getters and Setters
     public int getId() {
         return id;

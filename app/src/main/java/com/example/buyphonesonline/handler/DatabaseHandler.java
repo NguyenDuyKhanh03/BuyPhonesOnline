@@ -23,6 +23,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String PRODUCT_IMAGE = "image";
     public static final String PRODUCT_NAME = "name";
     public static final String PRODUCT_PRICE = "price";
+    public static final String PRODUCT_DESCRIPTION = "description";
     public static final String PRODUCT_QUANTITY = "quantity";
     public static final String PRODUCT_CATEGORY_ID = "categoryId";
     public static final String PRODUCT_QUANTITY_SOLD = "quantitySold";
@@ -48,6 +49,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     PRODUCT_IMAGE + " TEXT, " +
                     PRODUCT_NAME + " TEXT NOT NULL, " +
                     PRODUCT_PRICE + " REAL NOT NULL, " +
+                    PRODUCT_DESCRIPTION + " TEXT NOT NULL, " +
                     PRODUCT_QUANTITY + " INTEGER NOT NULL, " +
                     PRODUCT_CATEGORY_ID + " INTEGER NOT NULL, " +
                     PRODUCT_QUANTITY_SOLD + " INTEGER NOT NULL, " +
@@ -72,6 +74,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.execSQL(CREATE_TABLE_PRODUCT);
             db.execSQL(CREATE_TABLE_IMAGES);
         }
+        db.execSQL(CREATE_TABLE_CATEGORY);
+        db.execSQL(CREATE_TABLE_PRODUCT);
+        db.execSQL(CREATE_TABLE_IMAGES);
     }
 
     @Override
@@ -83,7 +88,5 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             // Tạo lại bảng mới
             onCreate(db);
         }
-
-
     }
 }
