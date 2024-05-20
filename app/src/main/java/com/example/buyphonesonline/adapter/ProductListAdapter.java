@@ -63,9 +63,11 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(v.getContext(), ProductDetailsActivity.class);
+                    intent.putExtra("id_product",product.getId());
                     intent.putExtra("name",product.getName());
                     intent.putExtra("price",product.getPrice());
                     intent.putExtra("image",product.getImage());
+                    intent.putExtra("description",product.description());
                     v.getContext().startActivities(new Intent[]{intent});
                 }
             });

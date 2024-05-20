@@ -5,13 +5,16 @@ public class Product {
    private String image;
     private String name;
     private double price;
+    private String description;
     private int quantity;
     private int categoryId;
     private int quantitySold;
-    public Product(String image, String name, double price, int quantity, int categoryId) {
+
+    public Product(String image, String name, double price, String description, int quantity, int categoryId) {
         this.image = image;
         this.name = name;
         this.price = price;
+        this.description = description;
         this.quantity = quantity;
         this.categoryId = categoryId;
     }
@@ -26,10 +29,11 @@ public class Product {
         this.quantitySold = quantitySold;
     }
 
-    public Product(String image, String name, double price, int quantity, int categoryId, int quantitySold) {
+    public Product(String image, String name, double price, String description, int quantity, int categoryId, int quantitySold) {
         this.image = image;
         this.name = name;
         this.price = price;
+        this.description = description;
         this.quantity = quantity;
         this.categoryId = categoryId;
         this.quantitySold = quantitySold;
@@ -90,5 +94,13 @@ public class Product {
 
     public void setQuantitySold(int quantitySold) {
         this.quantitySold = quantitySold;
+    }
+
+    public String description() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

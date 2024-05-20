@@ -93,43 +93,55 @@
 
 
         <FrameLayout
+            android:id="@+id/frame_image1"
             android:layout_width="73dp"
             android:layout_height="73dp"
             android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:focusable="true"
             android:background="@drawable/background_image_product_details">
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/image1"
                 android:layout_width="45dp"
                 android:layout_height="49dp"
                 android:layout_gravity="center"
+                android:scaleType="centerCrop"
                 android:src="@drawable/sonyheadphones" />
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/frame_image2"
             android:layout_width="73dp"
             android:layout_height="73dp"
             android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:focusable="true"
             android:background="@drawable/background_image_product_details">
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/image2"
                 android:layout_width="45dp"
                 android:layout_height="49dp"
                 android:layout_gravity="center"
+                android:scaleType="centerCrop"
                 android:src="@drawable/sonyheadphones" />
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/frame_image3"
             android:layout_width="73dp"
             android:layout_height="73dp"
+            android:clickable="true"
+            android:focusable="true"
             android:background="@drawable/background_image_product_details">
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/image3"
                 android:layout_width="45dp"
                 android:layout_height="49dp"
                 android:layout_gravity="center"
+                android:scaleType="centerCrop"
                 android:src="@drawable/sonyheadphones" />
         </FrameLayout>
 

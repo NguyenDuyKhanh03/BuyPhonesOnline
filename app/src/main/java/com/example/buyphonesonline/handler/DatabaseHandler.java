@@ -27,6 +27,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String PRODUCT_CATEGORY_ID = "categoryId";
     public static final String PRODUCT_QUANTITY_SOLD = "quantitySold";
 
+    //Bảng image
+
+    public static final String TABLE_IMAGE = "Images";
+    public static final String IMAGE_ID = "id";
+    public static final String IMAGE_NAME = "name";
+    public static final String IMAGE_URL = "url";
+    public static final String IMAGE_RELATION_ID = "relation_id";
+    public static final String IMAGE_TYPE = "type";
+
 
     private static final String CREATE_TABLE_CATEGORY =
             "CREATE TABLE " + TABLE_CATEGORY + " (" +
@@ -44,6 +53,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     PRODUCT_QUANTITY_SOLD + " INTEGER NOT NULL, " +
                     "FOREIGN KEY(" + PRODUCT_CATEGORY_ID + ") REFERENCES " + TABLE_CATEGORY + "(" + CATEGORY_ID + "));";
 
+    private static final String CREATE_TABLE_IMAGES =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_IMAGE + " (" +
+                    IMAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    IMAGE_NAME + " TEXT, " +
+                    IMAGE_URL + " TEXT, " +
+                    IMAGE_RELATION_ID + " INTEGER, " +
+                    IMAGE_TYPE + " TEXT" +
+                    ")";
     public DatabaseHandler(@Nullable Context context) {
         super(context ,DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -53,6 +70,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if(DATABASE_VERSION>2) {
             db.execSQL(CREATE_TABLE_CATEGORY);
             db.execSQL(CREATE_TABLE_PRODUCT);
+            db.execSQL(CREATE_TABLE_IMAGES);
         }
     }
 
@@ -61,9 +79,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if(DATABASE_VERSION>2){
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGE);
             // Tạo lại bảng mới
             onCreate(db);
         }
+
 
     }
 }
