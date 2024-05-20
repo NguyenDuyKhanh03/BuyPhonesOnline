@@ -51,17 +51,49 @@
                 android:background="@drawable/rectangle14">
 
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvPhoneChargeCord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16sp"
+                android:textColor="#343A40"
+                android:textStyle="italic"
+                android:layout_below="@id/relativeLayout1"
+                android:text="@string/phoneChargeCord" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPhoneChargeCord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/relativeLayout1"
-                android:layout_marginTop="16dp" />
+                android:layout_below="@id/tvPhoneChargeCord"/>
 
             <View
+                android:id="@+id/view1"
                 android:layout_below="@id/rvPhoneChargeCord"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"/>
+                android:layout_height="10dp"/>
+
+            <TextView
+                android:id="@+id/tvCharger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#343A40"
+                android:textStyle="italic"
+                android:layout_below="@id/view1"
+                android:text="@string/phoneCharge" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCharger"
+                android:layout_below="@id/tvCharger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View
+                android:id="@+id/view2"
+                android:layout_below="@id/rvCharger"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
 
         </RelativeLayout>
     </ScrollView>

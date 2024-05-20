@@ -94,4 +94,33 @@ public class ProductRepository {
         db.close();
         return product;
     }
+
+    public List<Product> getProductsByType(int productType) {
+        List<Product> products = new ArrayList<>();
+        SQLiteDatabase db = databaseHandler.getReadableDatabase();
+
+        String query = "SELECT * FROM " + DatabaseHandler.TABLE_PRODUCT +
+                " WHERE "+DatabaseHandler.TABLE_PRODUCT + "." + DatabaseHandler.PRODUCT_CATEGORY_ID + " = "+productType;
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()){
+            Product product=new Product(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getDouble(3),
+                    cursor.getString(4),
+                    cursor.getInt(5),
+                    cursor.getInt(6),
+                    cursor.getInt(7)
+            );
+            products.add(product);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        db.close();
+        return products;
+    }
+
 }

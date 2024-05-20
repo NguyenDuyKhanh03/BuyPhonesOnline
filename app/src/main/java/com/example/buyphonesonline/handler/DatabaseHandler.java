@@ -74,9 +74,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.execSQL(CREATE_TABLE_PRODUCT);
             db.execSQL(CREATE_TABLE_IMAGES);
         }
-        db.execSQL(CREATE_TABLE_CATEGORY);
-        db.execSQL(CREATE_TABLE_PRODUCT);
-        db.execSQL(CREATE_TABLE_IMAGES);
     }
 
     @Override
