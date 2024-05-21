@@ -22,6 +22,7 @@ import com.example.buyphonesonline.repository.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,7 +65,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        DatabaseHandler databaseHandler=new DatabaseHandler(view.getContext());
+        DatabaseHandler databaseHandler=DatabaseHandler.newInstance(requireContext().getApplicationContext());
 //        CategoryRepository categoryRepository=new CategoryRepository(databaseHandler);
 //        categoryRepository.addCategory("Dây sạc");
 //        categoryRepository.addCategory("Củ sạc");

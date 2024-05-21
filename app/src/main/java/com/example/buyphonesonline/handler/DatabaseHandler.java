@@ -63,6 +63,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     IMAGE_RELATION_ID + " INTEGER, " +
                     IMAGE_TYPE + " TEXT" +
                     ")";
+
+    private static DatabaseHandler databaseHandler=null;
+    public static DatabaseHandler newInstance(Context context){
+        if(databaseHandler==null){
+            databaseHandler=new DatabaseHandler(context);
+        }
+        return databaseHandler;
+    }
     public DatabaseHandler(@Nullable Context context) {
         super(context ,DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -74,6 +82,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.execSQL(CREATE_TABLE_PRODUCT);
             db.execSQL(CREATE_TABLE_IMAGES);
         }
+        db.execSQL(CREATE_TABLE_CATEGORY);
+        db.execSQL(CREATE_TABLE_PRODUCT);
+        db.execSQL(CREATE_TABLE_IMAGES);
     }
 
     @Override
@@ -85,5 +96,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             // Tạo lại bảng mới
             onCreate(db);
         }
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGE);
+        // Tạo lại bảng mới
+        onCreate(db);
     }
 }

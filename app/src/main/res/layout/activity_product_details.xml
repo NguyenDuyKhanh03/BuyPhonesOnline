@@ -149,20 +149,21 @@
         android:id="@+id/reL1"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/background_description_product"
-        android:layout_below="@id/ln1">
+        android:layout_below="@id/ln1"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/background_description_product">
 
         <TextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:textStyle="italic|bold"
             android:layout_marginStart="16dp"
-            android:textColor="#343A40"
             android:layout_marginTop="16dp"
-            android:text="Sony" />
+            android:text="Sony"
+            android:textColor="#343A40"
+            android:textSize="22sp"
+            android:textStyle="italic|bold" />
 
         <TextView
             android:id="@+id/tvDescription"
@@ -171,20 +172,20 @@
             android:layout_below="@id/tvName"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:textSize="15sp"
+            android:text="The intuitive and intelligent WH-1000XM4 headphones bring you new improvements in industry-leading noise cancelling technology."
             android:textColor="#909090"
-            android:text="The intuitive and intelligent WH-1000XM4 headphones bring you new improvements in industry-leading noise cancelling technology." />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tvDescription"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_below="@id/tvDescription"
-            android:textSize="20sp"
+            android:text="200 000đ"
             android:textColor="#FF5500"
-            android:text="200 000đ" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:id="@+id/ln2"
@@ -192,36 +193,36 @@
             android:layout_height="34dp"
             android:layout_below="@id/tvPrice"
             android:layout_marginStart="16dp"
-            android:gravity="center"
             android:layout_marginTop="32dp"
-            android:background="@drawable/background_amount_product">
+            android:background="@drawable/background_amount_product"
+            android:gravity="center">
 
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="#909090"
                 android:layout_marginEnd="16dp"
-                android:text="-" />
+                android:text="-"
+                android:textColor="#909090"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="#909090"
                 android:layout_marginEnd="16dp"
-                android:text="1" />
+                android:text="1"
+                android:textColor="#909090"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:text="+"
                 android:textColor="#909090"
-                android:text="+" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -232,6 +233,6 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/group45"/>
+            android:background="@drawable/group45" />
     </RelativeLayout>
 </RelativeLayout>
