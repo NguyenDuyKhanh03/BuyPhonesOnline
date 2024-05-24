@@ -11,7 +11,9 @@ import com.bumptech.glide.Glide;
 import com.example.buyphonesonline.databinding.ActivityProductDetailsBinding;
 import com.example.buyphonesonline.handler.DatabaseHandler;
 import com.example.buyphonesonline.models.Images;
+import com.example.buyphonesonline.repository.CartRepository;
 import com.example.buyphonesonline.repository.ImagesRepository;
+import com.example.buyphonesonline.repository.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +47,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
         getListImageByIdProduct(databaseHandler,id);
         setListImageToImageView(images);
         evenClickImage();
-
+        binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProductRepository productRepository=new ProductRepository(databaseHandler);
+                CartRepository cartRepository=new CartRepository(databaseHandler,productRepository);
+                cartRepository.addProduct(id,"Khanh",1);
+            }
+        });
     }
     private void getListImageByIdProduct(DatabaseHandler databaseHandler,int id){
         ImagesRepository imagesRepository=new ImagesRepository(databaseHandler);

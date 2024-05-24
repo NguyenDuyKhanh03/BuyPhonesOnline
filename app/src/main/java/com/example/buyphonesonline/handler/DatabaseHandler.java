@@ -64,6 +64,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     IMAGE_TYPE + " TEXT" +
                     ")";
 
+
+
+    public static final String TABLE_CART = "cart";
+    public static final String COLUMN_CART_ID = "cart_id";
+    public static final String COLUMN_CART_TOTAL_PRICE = "total_price";
+    public static final String COLUMN_CART_USERNAME = "username";
+
+    public static final String TABLE_CART_ITEM="cart_item";
+    public static final String COLUMN_CART_ITEM_ID="cart_item_id";
+    public static final String COLUMN_CART_ITEM_PRODUCT_ID="cart_item_product_id";
+    public static final String COLUMN_CART_ITEM_QUANTITY ="cart_item_quantity_id";
+
+
+    private static final String CREATE_CART_TABLE = "CREATE TABLE " + TABLE_CART + " (" +
+            COLUMN_CART_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_CART_TOTAL_PRICE + " REAL, " +
+            COLUMN_CART_USERNAME + " TEXT)";
+    private static final String CREATE_CART_ITEM_TABLE = "CREATE TABLE " + TABLE_CART_ITEM + " (" +
+            COLUMN_CART_ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_CART_ID + " INTEGER, " +
+            COLUMN_CART_ITEM_PRODUCT_ID + " INTEGER, " +
+            COLUMN_CART_ITEM_QUANTITY + " INTEGER, " +
+            "FOREIGN KEY(" + COLUMN_CART_ID + ") REFERENCES " + TABLE_CART + "(" + COLUMN_CART_ID + "))";
+
+
+
     private static DatabaseHandler databaseHandler=null;
     public static DatabaseHandler newInstance(Context context){
         if(databaseHandler==null){
@@ -71,35 +97,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return databaseHandler;
     }
+    Context context;
     public DatabaseHandler(@Nullable Context context) {
         super(context ,DATABASE_NAME, null, DATABASE_VERSION);
+        context=context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        if(DATABASE_VERSION>2) {
-            db.execSQL(CREATE_TABLE_CATEGORY);
-            db.execSQL(CREATE_TABLE_PRODUCT);
-            db.execSQL(CREATE_TABLE_IMAGES);
-        }
         db.execSQL(CREATE_TABLE_CATEGORY);
         db.execSQL(CREATE_TABLE_PRODUCT);
         db.execSQL(CREATE_TABLE_IMAGES);
+        db.execSQL(CREATE_CART_TABLE);
+        db.execSQL(CREATE_CART_ITEM_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if(DATABASE_VERSION>2){
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGE);
-            // Tạo lại bảng mới
-            onCreate(db);
-        }
+
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGE);
         // Tạo lại bảng mới
         onCreate(db);
     }
+
+
 }

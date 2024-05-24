@@ -70,7 +70,7 @@ public class ProductRepository {
                 DatabaseHandler.PRODUCT_QUANTITY_SOLD
         };
 
-        String selection = DatabaseHandler.PRODUCT_ID + " = ?";
+        String selection = DatabaseHandler.PRODUCT_NAME+ " = ?";
         String[] selectionArgs = { String.valueOf(name) };
 
         Cursor cursor = db.query(DatabaseHandler.TABLE_PRODUCT, projection, selection, selectionArgs, null, null, null);
@@ -95,6 +95,43 @@ public class ProductRepository {
         return product;
     }
 
+    public Product getProductById(int id) {
+        SQLiteDatabase db = databaseHandler.getReadableDatabase();
+        String[] projection = {
+                DatabaseHandler.PRODUCT_ID,
+                DatabaseHandler.PRODUCT_IMAGE,
+                DatabaseHandler.PRODUCT_NAME,
+                DatabaseHandler.PRODUCT_PRICE,
+                DatabaseHandler.PRODUCT_DESCRIPTION,
+                DatabaseHandler.PRODUCT_QUANTITY,
+                DatabaseHandler.PRODUCT_CATEGORY_ID,
+                DatabaseHandler.PRODUCT_QUANTITY_SOLD
+        };
+
+        String selection = DatabaseHandler.PRODUCT_ID + " = ?";
+        String[] selectionArgs = { String.valueOf(id) };
+
+        Cursor cursor = db.query(DatabaseHandler.TABLE_PRODUCT, projection, selection, selectionArgs, null, null, null);
+
+        Product product = null;
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                String image = cursor.getString(1);
+                String name=cursor.getString(2);
+                double price = cursor.getDouble(3);
+                String des = cursor.getString(4);
+                int quantity = cursor.getInt(5);
+                int categoryId = cursor.getInt(6);
+                int quantitySold = cursor.getInt(7);
+
+                product = new Product(id, image, name, price,des, quantity, categoryId, quantitySold);
+            }
+            cursor.close();
+        }
+
+//        db.close();
+        return product;
+    }
     public List<Product> getProductsByType(int productType) {
         List<Product> products = new ArrayList<>();
         SQLiteDatabase db = databaseHandler.getReadableDatabase();

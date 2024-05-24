@@ -226,7 +226,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/btnAddToCart"
             android:layout_width="211dp"
             android:layout_height="48dp"
             android:layout_below="@id/tvPrice"
