@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -26,15 +28,14 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class CartActivity extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity implements OnQuantityChangeListener {
 
     List<ProductDto> productDtos=new ArrayList<>();
     ModelMapper modelMapper= ModelMapperConfig.getModelMapper();
     CartAdapter cartAdapter;
     ActivityCartBinding binding;
     DatabaseHandler databaseHandler;
-    private ExecutorService executorService;
-    private Handler mainHandler;
+
     CartRepository cartRepository;
 
     @Override
@@ -117,7 +118,7 @@ public class CartActivity extends AppCompatActivity {
         ProductRepository productRepository=new ProductRepository(databaseHandler);
         cartRepository=new CartRepository(databaseHandler,productRepository);
         productDtos=cartRepository.getCartItemsByUsername("Khanh");
-        cartAdapter=new CartAdapter(productDtos,databaseHandler);
+        cartAdapter=new CartAdapter(productDtos,databaseHandler,this);
         binding.rvProduct.setLayoutManager(new LinearLayoutManager(CartActivity.this, RecyclerView.VERTICAL,false));
         binding.rvProduct.setAdapter(cartAdapter);
         binding.rvProduct.addItemDecoration(new VerticalItemDecoration(40));
@@ -132,6 +133,14 @@ public class CartActivity extends AppCompatActivity {
         Cart cart= cartRepository.findCartByUsername("Khanh");
         if(cart!=null)
             binding.tvTotal.setText(String.valueOf(cart.totalPrice()));
+
+
+        updateTotalPrice();
+        SharedPreferences userDetails = getBaseContext().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
+        String username = userDetails.getString("username", "");
+        String test2 = userDetails.getString("password", "");
+        Toast.makeText(getBaseContext(),username,Toast.LENGTH_LONG).show();
+
     }
     private double getTotalPrice(List<ProductDto> productDtos){
         double total=0;
@@ -141,5 +150,14 @@ public class CartActivity extends AppCompatActivity {
         }
         return total;
 
+    }
+
+    private void updateTotalPrice() {
+        double total = getTotalPrice(productDtos);
+        binding.tvTotal.setText(String.valueOf(total));
+    }
+    @Override
+    public void onQuantityChanged() {
+        updateTotalPrice();
     }
 }

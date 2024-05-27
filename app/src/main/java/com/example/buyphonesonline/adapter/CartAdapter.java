@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.buyphonesonline.OnQuantityChangeListener;
 import com.example.buyphonesonline.databinding.ItemProductInCartBinding;
 import com.example.buyphonesonline.dtos.ProductDto;
 import com.example.buyphonesonline.handler.DatabaseHandler;
@@ -20,11 +21,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     List<ProductDto> productDtos;
     private final CartRepository cartRepository;
+    private final OnQuantityChangeListener quantityChangeListener;
 
-    public CartAdapter(List<ProductDto> productDtos, DatabaseHandler databaseHandler) {
+    public CartAdapter(List<ProductDto> productDtos, DatabaseHandler databaseHandler,OnQuantityChangeListener quantityChangeListener) {
         this.productDtos = productDtos;
         ProductRepository productRepository=new ProductRepository(databaseHandler);
         this.cartRepository=new CartRepository(databaseHandler,productRepository);
+        this.quantityChangeListener = quantityChangeListener;
     }
 
     @NonNull
@@ -60,6 +63,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                         binding.tvQuantity.setText(String.valueOf(productDtos.get(pos).quantity()));
                         cartRepository.updateCartItemQuantity(productDtos.get(pos).id(),productDtos.get(pos).quantity());
                         cartRepository.updateCart("Khanh",getTotalPrice(productDtos));
+                        quantityChangeListener.onQuantityChanged();
                     }
                 }
             });
@@ -73,9 +77,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                         binding.tvQuantity.setText(String.valueOf(productDtos.get(position).quantity()));
                         cartRepository.updateCartItemQuantity(productDtos.get(position).id(),productDtos.get(position).quantity());
                         cartRepository.updateCart("Khanh",getTotalPrice(productDtos));
+                        quantityChangeListener.onQuantityChanged();
                     }
                 }
             });
+
         }
 
         public void bindData(ProductDto product){

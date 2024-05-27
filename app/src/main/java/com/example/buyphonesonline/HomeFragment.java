@@ -1,5 +1,9 @@
 package com.example.buyphonesonline;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -463,5 +467,6 @@ public class HomeFragment extends Fragment {
         rvTelephone.setLayoutManager(new LinearLayoutManager(view.getContext(),RecyclerView.HORIZONTAL,false));
         rvTelephone.setAdapter(adapterTelephone);
         rvTelephone.addItemDecoration(new HorizontalItemDecoration(50));
+
     }
 }
