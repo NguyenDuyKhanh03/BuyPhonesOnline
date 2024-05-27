@@ -22,7 +22,7 @@ public class CartRepository {
     }
 
     // sua lai cho product.
-    public void addProduct(int productId, String username, int count) {
+    public void addProduct(int productId, String username) {
         SQLiteDatabase db = databaseHandler.getWritableDatabase();
         Product product = productRepository.getProductById(productId);
         databaseHandler.getWritableDatabase();
@@ -42,20 +42,20 @@ public class CartRepository {
             ContentValues cartItemValues = new ContentValues();
             cartItemValues.put(DatabaseHandler.COLUMN_CART_ID, cartId);
             cartItemValues.put(DatabaseHandler.COLUMN_CART_ITEM_PRODUCT_ID, productId);
-            cartItemValues.put(DatabaseHandler.COLUMN_CART_ITEM_QUANTITY, count);
+            cartItemValues.put(DatabaseHandler.COLUMN_CART_ITEM_QUANTITY, 1);
             db.insert(DatabaseHandler.TABLE_CART_ITEM, null, cartItemValues);
         } else {
             int cartId = cart.id();
-            if (!isProductInCart(cartId, productId)) {
+            if (isProductInCart(cartId, productId)==null) {
 
                 ContentValues cartItemValues = new ContentValues();
                 cartItemValues.put(DatabaseHandler.COLUMN_CART_ID, cartId);
                 cartItemValues.put(DatabaseHandler.COLUMN_CART_ITEM_PRODUCT_ID, productId);
-                cartItemValues.put(DatabaseHandler.COLUMN_CART_ITEM_QUANTITY, count);
+                cartItemValues.put(DatabaseHandler.COLUMN_CART_ITEM_QUANTITY, 1);
                 db.insert(DatabaseHandler.TABLE_CART_ITEM, null, cartItemValues);
             } else {
                 // Update the quantity of the existing product in the cart
-                updateCartItem(cartId, productId, count);
+                updateCartItem(cartId, productId, isProductInCart(cartId, productId).quantity()+1);
             }
         }
 
@@ -76,16 +76,16 @@ public class CartRepository {
 
     }
 
-    public boolean isProductInCart(int cartId, int productId) {
+    public ProductDto isProductInCart(int cartId, int productId) {
+        ProductDto productDto=null;
         SQLiteDatabase db = databaseHandler.getReadableDatabase();
         Cursor cursor = null;
-        boolean check = false;
-        String query = "SELECT COUNT(*) FROM " + DatabaseHandler.TABLE_CART_ITEM + " WHERE " + DatabaseHandler.COLUMN_CART_ID + " = ? AND " + DatabaseHandler.COLUMN_CART_ITEM_PRODUCT_ID + " = ?";
+        String query = "SELECT * FROM " + DatabaseHandler.TABLE_CART_ITEM + " WHERE " + DatabaseHandler.COLUMN_CART_ID + " = ? AND " + DatabaseHandler.COLUMN_CART_ITEM_PRODUCT_ID + " = ?";
         cursor = db.rawQuery(query, new String[]{String.valueOf(cartId), String.valueOf(productId)});
         if(cursor != null && cursor.moveToFirst()) {
-            check = cursor.getInt(0) > 0;
+            productDto=new ProductDto(cursor.getInt(0),cursor.getInt(3));
         }
-        return check;
+        return productDto;
     }
 
     public void updateCartItem(int cartId, int productId, int quantity) {
@@ -149,10 +149,21 @@ public class CartRepository {
         return cart;
     }
 
-
-
-
-
+    public void updateCart(String username,long totalPrice){
+        int cartId=findCartByUsername(username).id();
+        SQLiteDatabase db=databaseHandler.getWritableDatabase();
+        ContentValues values=new ContentValues();
+        values.put(DatabaseHandler.COLUMN_CART_TOTAL_PRICE,totalPrice);
+        db.update(DatabaseHandler.TABLE_CART,values,DatabaseHandler.COLUMN_CART_ID + " = ?",new String[]{String.valueOf(cartId)});
+        db.close();
+    }
+    public void updateCartItemQuantity(int cartItemId, int newQuantity) {
+        SQLiteDatabase db = databaseHandler.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHandler.COLUMN_CART_ITEM_QUANTITY, newQuantity);
+        db.update(DatabaseHandler.TABLE_CART_ITEM, values, DatabaseHandler.COLUMN_CART_ITEM_ID + " = ?", new String[]{String.valueOf(cartItemId)});
+        db.close();
+    }
 
 
 }

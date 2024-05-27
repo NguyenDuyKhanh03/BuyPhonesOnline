@@ -52,7 +52,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ProductRepository productRepository=new ProductRepository(databaseHandler);
                 CartRepository cartRepository=new CartRepository(databaseHandler,productRepository);
-                cartRepository.addProduct(id,"Khanh",1);
+                cartRepository.addProduct(id,"Khanh");
             }
         });
     }

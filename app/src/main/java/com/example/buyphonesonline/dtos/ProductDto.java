@@ -57,4 +57,19 @@ public class ProductDto {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public void increaseQuantity() {
+        this.quantity+=1;
+    }
+
+    public void decreaseQuantity() {
+        if (this.quantity > 0) {
+            this.quantity-=1;
+        }
+    }
+
+    public ProductDto(int id, int quantity) {
+        this.id = id;
+        this.quantity = quantity;
+    }
 }

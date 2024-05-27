@@ -5,14 +5,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.buyphonesonline.adapter.CartAdapter;
 import com.example.buyphonesonline.config.ModelMapperConfig;
 import com.example.buyphonesonline.databinding.ActivityCartBinding;
 import com.example.buyphonesonline.dtos.ProductDto;
 import com.example.buyphonesonline.handler.DatabaseHandler;
-import com.example.buyphonesonline.models.Product;
+import com.example.buyphonesonline.models.Cart;
 import com.example.buyphonesonline.repository.CartRepository;
 import com.example.buyphonesonline.repository.ProductRepository;
 
@@ -20,6 +23,8 @@ import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -28,6 +33,10 @@ public class CartActivity extends AppCompatActivity {
     CartAdapter cartAdapter;
     ActivityCartBinding binding;
     DatabaseHandler databaseHandler;
+    private ExecutorService executorService;
+    private Handler mainHandler;
+    CartRepository cartRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         binding=ActivityCartBinding.inflate(getLayoutInflater());
@@ -106,9 +115,9 @@ public class CartActivity extends AppCompatActivity {
 //        );
         databaseHandler=DatabaseHandler.newInstance(getApplicationContext());
         ProductRepository productRepository=new ProductRepository(databaseHandler);
-        CartRepository cartRepository=new CartRepository(databaseHandler,productRepository);
+        cartRepository=new CartRepository(databaseHandler,productRepository);
         productDtos=cartRepository.getCartItemsByUsername("Khanh");
-        cartAdapter=new CartAdapter(productDtos);
+        cartAdapter=new CartAdapter(productDtos,databaseHandler);
         binding.rvProduct.setLayoutManager(new LinearLayoutManager(CartActivity.this, RecyclerView.VERTICAL,false));
         binding.rvProduct.setAdapter(cartAdapter);
         binding.rvProduct.addItemDecoration(new VerticalItemDecoration(40));
@@ -120,5 +129,17 @@ public class CartActivity extends AppCompatActivity {
                 finish();
             }
         });
+        Cart cart= cartRepository.findCartByUsername("Khanh");
+        if(cart!=null)
+            binding.tvTotal.setText(String.valueOf(cart.totalPrice()));
+    }
+    private double getTotalPrice(List<ProductDto> productDtos){
+        double total=0;
+        for (ProductDto i:
+             productDtos) {
+            total+=i.price()*i.quantity();
+        }
+        return total;
+
     }
 }
