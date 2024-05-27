@@ -165,7 +165,7 @@ public class HomeFragment extends Fragment {
                 "Samsung Galaxy Tab S9+ 5G 256GB",
                 8900000,
                 "Tại sự kiện Unpacked 2023 Samsung đã cho ra mắt Samsung Galaxy Tab S9+ 5G 256GB với hiệu năng mạnh mẽ, màn hình hiển thị sắc nét và là máy tính bảng đầu tiên của hãng được trang bị kháng nước.",
-                10,
+                18,
                 5
         );
         productRepository.addProduct(product9);
