@@ -8,7 +8,6 @@
         android:id="@+id/imgProduct"
         android:layout_width="122dp"
         android:layout_height="92dp"
-        android:scaleType="centerCrop"
         android:src="@drawable/laptop"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"/>

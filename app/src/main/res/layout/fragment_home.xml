@@ -115,6 +115,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp"/>
 
+            <TextView
+                android:id="@+id/tv_ipad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ipad"
+                android:layout_below="@+id/view2"
+                android:textColor="#343A40"
+                android:textStyle="italic"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvIpad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_ipad"/>
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_below="@id/rvIpad"/>
+
         </RelativeLayout>
     </ScrollView>
 
