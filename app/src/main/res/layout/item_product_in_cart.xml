@@ -36,4 +36,32 @@
         android:layout_marginStart="16dp"
         android:textSize="12sp"
         android:text="300000" />
+
+    <TextView
+        android:id="@+id/tvIncrease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/tvName"
+        android:layout_marginStart="100dp"
+        android:textSize="30sp"
+        android:text="+" />
+    <TextView
+        android:id="@+id/tvQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/tvIncrease"
+        android:layout_marginStart="20dp"
+        android:textSize="25sp"
+        android:text="1" />
+    <TextView
+        android:id="@+id/tvReduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/tvQuantity"
+        android:layout_marginStart="20dp"
+        android:layout_centerVertical="true"
+        android:textSize="30sp"
+        android:text="-" />
 </RelativeLayout>
