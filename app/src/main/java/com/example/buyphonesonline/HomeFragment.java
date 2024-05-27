@@ -179,41 +179,22 @@ public class HomeFragment extends Fragment {
         );
         productRepository.addProduct(product10);
         Product product11=new Product(
-                "",
-                "",
-                ,
-                "",
+                "https://firebasestorage.googleapis.com/v0/b/hinhanhdoan-7826d.appspot.com/o/ipadAir5M1.png?alt=media&token=6d7971e7-92d2-4c1e-a987-54fb72e1dfd1",
+                "iPad Air 5 M1 5G 64GB ",
+                7690000,
+                "So với chiếc iPad Air 5 M1 WiFi 64GB thì chiếc iPad Air 5 M1 WiFi Cellular 64GB đã có một điểm khác biệt đáng kể đó là phương thức kết nối khi bạn vừa có thể sử dụng Wifi và mạng di động một cách bình thường nhưng vẫn cho một trải nghiệm rất tuyệt vời.",
                 10,
                 5
         );
         productRepository.addProduct(product11);
         Product product12=new Product(
-                "",
-                "",
-                ,
-                "",
+                "https://firebasestorage.googleapis.com/v0/b/hinhanhdoan-7826d.appspot.com/o/ipadPro10.png?alt=media&token=928e6523-57a6-4eef-91c8-9f4562c0ca61",
+                "iPad 10 WiFi 64GB",
+                9880000,
+                "Sau khi trình làng hàng loạt mẫu iPhone vào tháng 09/2022 thì Apple cũng đã tiếp tục giới thiệu series iPad mới cho năm 2022. Trong đó iPad Gen 10 là cái tên được hãng chú trọng khá nhiều về việc tối ưu giá thành nhằm giúp người dùng có thể dễ dàng tiếp cận. Máy hỗ trợ hệ điều hành iPadOS 17 cùng con chip Apple A14 Bionic giúp mang lại hiệu năng vượt trội.",
                 10,
                 5
         );
-        productRepository.addProduct(product12);
-        Product product13=new Product(
-                "",
-                "",
-                ,
-                "",
-                10,
-                5
-        );
-        productRepository.addProduct(product13);
-        Product product14=new Product(
-                "",
-                "",
-                ,
-                "",
-                10,
-                5
-        );
-        productRepository.addProduct(product14);
         ImagesRepository imagesRepository=new ImagesRepository(databaseHandler);
 
         imagesRepository.addImages(new Images(
@@ -449,23 +430,44 @@ public class HomeFragment extends Fragment {
                 )
         );
         imagesRepository.addImages(new Images(
-                        "",
-                        "",
+                        "iPad Air 5 M1 5G 64GB ",
+                        "https://firebasestorage.googleapis.com/v0/b/hinhanhdoan-7826d.appspot.com/o/ipadAir5M1_a1.png?alt=media&token=326d9c5d-ab57-48e6-a97d-c0f9884c0765",
                         36,
                         "product"
                 )
         );
         imagesRepository.addImages(new Images(
-                        "",
-                        "",
+                        "iPad Air 5 M1 5G 64GB ",
+                        "https://firebasestorage.googleapis.com/v0/b/hinhanhdoan-7826d.appspot.com/o/ipadAir5M1_a2.png?alt=media&token=176627c1-b23f-46e0-9dcf-0f98b59c3a6b",
                         36,
                         "product"
                 )
         );
         imagesRepository.addImages(new Images(
-                        "",
-                        "",
+                        "iPad Air 5 M1 5G 64GB ",
+                        "https://firebasestorage.googleapis.com/v0/b/hinhanhdoan-7826d.appspot.com/o/ipadAir5M1_a3.png?alt=media&token=d507e74b-5165-44bd-894f-99f7ca41ee1c",
                         36,
+                        "product"
+                )
+        );
+        imagesRepository.addImages(new Images(
+                        "iPad 10 WiFi 64GB",
+                        "https://firebasestorage.googleapis.com/v0/b/hinhanhdoan-7826d.appspot.com/o/ipadPro10_a1.png?alt=media&token=6d3a7a04-eb71-4380-89b8-ade1143f86e2",
+                        37,
+                        "product"
+                )
+        );
+        imagesRepository.addImages(new Images(
+                        "iPad 10 WiFi 64GB",
+                        "https://firebasestorage.googleapis.com/v0/b/hinhanhdoan-7826d.appspot.com/o/ipadPro10_a2.png?alt=media&token=41126cc7-c310-4607-9a15-eb0221d964a4",
+                        37,
+                        "product"
+                )
+        );
+        imagesRepository.addImages(new Images(
+                        "iPad 10 WiFi 64GB",
+                        "https://firebasestorage.googleapis.com/v0/b/hinhanhdoan-7826d.appspot.com/o/ipadPro10_a3.png?alt=media&token=461eabe8-48ef-4d3c-bb63-83f7ac056c38",
+                        37,
                         "product"
                 )
         );
