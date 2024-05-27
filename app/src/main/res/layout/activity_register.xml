@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:text="Đăng Ký"
+        android:textColor="#2196F3"
+        android:textSize="40sp"
+        android:textStyle="bold">
+    </TextView>
+    <EditText
+        android:drawableRight="@drawable/ic_accout"
+        android:id="@+id/dktaikhoan"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:hint="Tài khoản">
+    </EditText>
+    <EditText
+        android:drawableRight="@drawable/ic_pass"
+        android:id="@+id/dkmatkhau"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:hint="Mật khẩu">
+    </EditText>
+    <EditText
+        android:drawableRight="@drawable/ic_mail"
+        android:id="@+id/dkemail"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:hint="Email">
+    </EditText>
+
+
+    <Button
+        android:id="@+id/btn_dkdangky"
+        android:layout_width="119dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Đăng ký">
+
+    </Button>
+</LinearLayout>
