@@ -150,7 +150,7 @@ public class CartActivity extends AppCompatActivity implements OnQuantityChangeL
     }
 
     private void updateTotalPrice() {
-        double total = getTotalPrice(productDtos);
+        long total = getTotalPrice(productDtos);
         binding.tvTotal.setText(String.valueOf(total));
     }
     @Override
