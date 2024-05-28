@@ -119,7 +119,7 @@
                 android:id="@+id/tv_ipad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ipad"
+                android:text="@string/ipad"
                 android:layout_below="@+id/view3"
                 android:textColor="#343A40"
                 android:textStyle="italic"/>
@@ -133,7 +133,7 @@
             <View
                 android:id="@+id/view4"
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
+                android:layout_height="90dp"
                 android:layout_below="@id/rvIpad"/>
 
         </RelativeLayout>

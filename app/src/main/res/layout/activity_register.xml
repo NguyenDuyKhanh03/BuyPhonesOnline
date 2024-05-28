@@ -18,7 +18,7 @@
     </TextView>
     <EditText
         android:drawableRight="@drawable/ic_accout"
-        android:id="@+id/dktaikhoan"
+        android:id="@+id/edtUsername"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -27,7 +27,7 @@
     </EditText>
     <EditText
         android:drawableRight="@drawable/ic_pass"
-        android:id="@+id/dkmatkhau"
+        android:id="@+id/edtPassword"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -36,7 +36,7 @@
     </EditText>
     <EditText
         android:drawableRight="@drawable/ic_mail"
-        android:id="@+id/dkemail"
+        android:id="@+id/edtEmail"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

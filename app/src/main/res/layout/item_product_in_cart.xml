@@ -17,51 +17,61 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="16dp"/>
 
-    <TextView
-        android:id="@+id/tvName"
+    <LinearLayout
+        android:id="@+id/ln1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/imgProduct"
-        android:layout_marginTop="20dp"
+        android:layout_centerVertical="true"
         android:layout_marginStart="16dp"
-        android:textSize="13sp"
-        android:text="Americano" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvPrice"
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Americano"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="300000"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/imgProduct"
-        android:layout_marginTop="38dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/ln1"
         android:layout_marginStart="16dp"
-        android:textSize="12sp"
-        android:text="300000" />
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvIncrease"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/tvName"
-        android:layout_marginStart="100dp"
-        android:textSize="30sp"
-        android:text="+" />
-    <TextView
-        android:id="@+id/tvQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/tvIncrease"
-        android:layout_marginStart="20dp"
-        android:textSize="25sp"
-        android:text="1" />
-    <TextView
-        android:id="@+id/tvReduce"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/tvQuantity"
-        android:layout_marginStart="20dp"
-        android:layout_centerVertical="true"
-        android:textSize="30sp"
-        android:text="-" />
+        <TextView
+            android:id="@+id/tvIncrease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="1"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvReduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="-"
+            android:textSize="13sp" />
+    </LinearLayout>
 </RelativeLayout>

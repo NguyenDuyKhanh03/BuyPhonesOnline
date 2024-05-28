@@ -136,14 +136,11 @@ public class CartActivity extends AppCompatActivity implements OnQuantityChangeL
 
 
         updateTotalPrice();
-        SharedPreferences userDetails = getBaseContext().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
-        String username = userDetails.getString("username", "");
-        String test2 = userDetails.getString("password", "");
-        Toast.makeText(getBaseContext(),username,Toast.LENGTH_LONG).show();
+
 
     }
-    private double getTotalPrice(List<ProductDto> productDtos){
-        double total=0;
+    private long getTotalPrice(List<ProductDto> productDtos){
+        long total=0;
         for (ProductDto i:
              productDtos) {
             total+=i.price()*i.quantity();

@@ -66,6 +66,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 
+
     public static final String TABLE_CART = "cart";
     public static final String COLUMN_CART_ID = "cart_id";
     public static final String COLUMN_CART_TOTAL_PRICE = "total_price";
@@ -89,6 +90,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             "FOREIGN KEY(" + COLUMN_CART_ID + ") REFERENCES " + TABLE_CART + "(" + COLUMN_CART_ID + "))";
 
 
+    public static final String TABLE_ROLE = "role";
+    public static final String COLUMN_ROLE_ID = "role_id";
+    public static final String COLUMN_ROLE_NAME = "name";
+
+    public static final String TABLE_USER="user";
+    public static final String COLUMN_USER_ID="user_id";
+    public static final String COLUMN_USERNAME="username";
+    public static final String COLUMN_EMAIL ="email";
+    public static final String COLUMN_PASSWORD ="password";
+    public static final String COLUMN_ROLE ="role_id";
+    public static final String COLUMN_CREATION_DATE = "creation_date";
+
+    String CREATE_TABLE_ROLE = "CREATE TABLE " + TABLE_ROLE + " (" +
+            COLUMN_ROLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+            COLUMN_ROLE_NAME + " TEXT)";
+
+    String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " (" +
+            COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+            COLUMN_USERNAME + " TEXT UNIQUE, " +
+            COLUMN_EMAIL + " TEXT UNIQUE, " +
+            COLUMN_PASSWORD + " TEXT, " +
+            COLUMN_ROLE + " INTEGER DEFAULT 1, " +
+            COLUMN_CREATION_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP, " +
+            "FOREIGN KEY(" + COLUMN_ROLE + ") REFERENCES " + TABLE_ROLE + "(" + COLUMN_ROLE_ID + "))";
 
     private static DatabaseHandler databaseHandler=null;
     public static DatabaseHandler newInstance(Context context){
@@ -100,7 +125,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     Context context;
     public DatabaseHandler(@Nullable Context context) {
         super(context ,DATABASE_NAME, null, DATABASE_VERSION);
-        context=context;
     }
 
     @Override
@@ -110,6 +134,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_IMAGES);
         db.execSQL(CREATE_CART_TABLE);
         db.execSQL(CREATE_CART_ITEM_TABLE);
+        db.execSQL(CREATE_TABLE_ROLE);
+        db.execSQL(CREATE_TABLE_USER);
     }
 
     @Override

@@ -90,6 +90,7 @@
         android:layout_below="@id/frame_layout"
         android:layout_centerHorizontal="true"
         android:clickable="false"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
 
@@ -156,8 +157,8 @@
 
         <TextView
             android:id="@+id/tvName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Sony"

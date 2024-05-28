@@ -20,7 +20,7 @@
 
     <EditText
         android:drawableRight="@drawable/ic_accout"
-        android:id="@+id/dntaikhoan"
+        android:id="@+id/edtUsername"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -31,7 +31,7 @@
 
     <EditText
         android:drawableRight="@drawable/ic_pass"
-        android:id="@+id/dnmatkhau"
+        android:id="@+id/edtPassword"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
