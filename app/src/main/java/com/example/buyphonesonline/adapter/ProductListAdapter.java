@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,12 +20,14 @@ import com.example.buyphonesonline.models.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.MyViewHolder> {
+public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.MyViewHolder> implements Filterable {
 
     List<Product> listProduct;
+    private List<Product> productListFiltered;
 
     public ProductListAdapter(List<Product> listProduct) {
         this.listProduct = listProduct;
+        this.productListFiltered=listProduct;
     }
 
     public void setFilteredList(List<Product> filteredList) {
@@ -41,12 +45,45 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.bindData(listProduct.get(position));
+        holder.bindData(productListFiltered.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return listProduct.size();
+        return productListFiltered.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString=constraint.toString();
+                if(charString.isEmpty()){
+                    productListFiltered=listProduct;
+                }else{
+                    List<Product> filteredList=new ArrayList<>();
+                    for (Product p: listProduct) {
+                        if(p.getName().toLowerCase().contains(charString.toLowerCase())||
+                                p.description().toLowerCase().contains(charString.toLowerCase())||
+                                String.valueOf(p.getPrice()).equals(charString)
+                        ){
+                            filteredList.add(p);
+                        }
+                    }
+                    productListFiltered=filteredList;
+                }
+                FilterResults filterResults=new FilterResults();
+                filterResults.values=productListFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                productListFiltered= (ArrayList<Product>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{

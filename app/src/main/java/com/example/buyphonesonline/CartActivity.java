@@ -152,6 +152,14 @@ public class CartActivity extends AppCompatActivity implements OnQuantityChangeL
     private void updateTotalPrice() {
         long total = getTotalPrice(productDtos);
         binding.tvTotal.setText(String.valueOf(total));
+        if(!binding.tvShip.getText().toString().equals("Free"))
+        {
+            long sum= total+Long.parseLong(binding.tvShip.getText().toString());
+            binding.tvSum.setText(String.valueOf(sum));
+        }
+        else{
+            binding.tvSum.setText(binding.tvTotal.getText());
+        }
     }
     @Override
     public void onQuantityChanged() {

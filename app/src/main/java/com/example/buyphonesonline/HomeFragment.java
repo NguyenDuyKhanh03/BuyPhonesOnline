@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import com.example.buyphonesonline.adapter.ProductListAdapter;
+import com.example.buyphonesonline.adapter.VPAdapter;
 import com.example.buyphonesonline.handler.DatabaseHandler;
 import com.example.buyphonesonline.models.Images;
 import com.example.buyphonesonline.models.Product;
@@ -32,6 +34,10 @@ import java.util.Objects;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+
+
+    List<Integer> images=new ArrayList<>();
+    ViewPager2 viewPager2;
 
     List<Product> products=new ArrayList<>();
     ProductListAdapter adapter;
@@ -507,5 +513,12 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        images.add(R.drawable.galaxys20);
+        images.add(R.drawable.oppoa92);
+        images.add(R.drawable.redminot9);
+
+        viewPager2=view.findViewById(R.id.viewPager);
+        viewPager2.setAdapter(new VPAdapter(images));
     }
 }

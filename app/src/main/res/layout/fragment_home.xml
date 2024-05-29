@@ -29,7 +29,9 @@
         android:layout_height="46dp"
         android:background="@drawable/searchview_backround"
         android:focusable="true"
-        android:clickable="true" />
+        android:clickable="true" >
+
+    </SearchView>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -40,14 +42,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:id="@+id/relativeLayout1"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="149dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/rectangle14">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp">
 
-            </RelativeLayout>
+            </androidx.viewpager2.widget.ViewPager2>
 
             <TextView
                 android:id="@+id/tvPhoneChargeCord"
@@ -57,7 +58,7 @@
                 android:textSize="16sp"
                 android:textColor="#343A40"
                 android:textStyle="italic"
-                android:layout_below="@id/relativeLayout1"
+                android:layout_below="@id/viewPager"
                 android:text="@string/phoneChargeCord" />
 
             <androidx.recyclerview.widget.RecyclerView

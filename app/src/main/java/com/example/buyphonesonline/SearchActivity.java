@@ -28,6 +28,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         databaseHandler=DatabaseHandler.newInstance(getApplicationContext());
         productRepository=new ProductRepository(databaseHandler);
+        products=productRepository.getAllProducts();
         adapter=new ProductListAdapter(products);
         binding.lvProduct.addItemDecoration(new CharacterItemDecoration(50));
         binding.lvProduct.setLayoutManager(new GridLayoutManager(SearchActivity.this,2));
@@ -35,24 +36,25 @@ public class SearchActivity extends AppCompatActivity {
         binding.searchHome.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filterList(newText);
+//                filterList(newText);
+                adapter.getFilter().filter(newText);
                 return false;
             }
         });
-
     }
-    private void filterList(String text) {
-        List<Product> filteredList = new ArrayList<>();
-        if(!text.equals("")){
-            filteredList= productRepository.getListProductByTitle(text);
-        }
-        if(!filteredList.isEmpty()){
-            adapter.setFilteredList(filteredList);
-        }
-    }
+//    private void filterList(String text) {
+//        List<Product> filteredList = new ArrayList<>();
+//        if(!text.equals("")){
+//            filteredList= productRepository.getListProductByTitle(text);
+//        }
+//        if(!filteredList.isEmpty()){
+//            adapter.setFilteredList(filteredList);
+//        }
+//    }
 }

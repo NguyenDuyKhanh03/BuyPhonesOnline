@@ -31,10 +31,85 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/frame_layout"/>
 
-    <TextView
-        android:id="@+id/tvTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rvProduct"
-        android:text="0" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/background_description_product">
+
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#3F4343"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="Tổng thanh toán" />
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textSize="14sp"
+            android:textColor="#3F4343"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="32dp"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv1"
+            android:textColor="#3F4343"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:textSize="14sp"
+            android:text="Phí vận chuyển" />
+
+        <TextView
+            android:id="@+id/tvShip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv1"
+            android:textColor="#3F4343"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="16dp"
+            android:textSize="14sp"
+            android:text="Free" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvShip"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="Tổng tiền" />
+
+        <TextView
+            android:id="@+id/tvSum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvShip"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="32dp"
+            android:text="0" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button"
+            android:layout_width="321dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView7"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rectangle5"
+            android:textColor="#FFFFFF"
+            android:text="Mua hàng" />
+    </RelativeLayout>
 </RelativeLayout>
