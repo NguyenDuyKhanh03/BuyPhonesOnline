@@ -1,13 +1,17 @@
 package com.example.buyphonesonline.adapter;
 
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.buyphonesonline.CartActivity;
 import com.example.buyphonesonline.OnQuantityChangeListener;
 import com.example.buyphonesonline.databinding.ItemProductInCartBinding;
 import com.example.buyphonesonline.dtos.ProductDto;
@@ -78,6 +82,33 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                         cartRepository.updateCartItemQuantity(productDtos.get(position).id(),productDtos.get(position).quantity());
                         cartRepository.updateCart("Khanh",getTotalPrice(productDtos));
                         quantityChangeListener.onQuantityChanged();
+                        if(productDtos.get(position).quantity()<=0){
+                            new AlertDialog.Builder(v.getContext())
+                                    .setTitle("Bạn có chắc không?")
+                                    .setMessage("Bạn muốn xóa sản phẩm này khỏi giỏ hàng!")
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            int productId = productDtos.get(position).id();
+                                            productDtos.remove(position);
+                                            notifyDataSetChanged();
+                                            int result=cartRepository.deleteProduct(productId);
+                                            if(result==0)
+                                                Toast.makeText(v.getContext(), "Không tìm thấy sản phẩm hoặc lỗi!", Toast.LENGTH_SHORT).show();
+                                            else{
+                                                Toast.makeText(v.getContext(), "Xóa thành công", Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        }
+                                    })
+                                    .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                        }
+                                    })
+                                    .show();
+                        }
                     }
                 }
             });

@@ -165,5 +165,22 @@ public class CartRepository {
         db.close();
     }
 
+    public int deleteProduct(int cartItem){
+        SQLiteDatabase db = databaseHandler.getWritableDatabase();
+        String query = "SELECT * FROM " + DatabaseHandler.TABLE_CART_ITEM + " WHERE " + DatabaseHandler.COLUMN_CART_ITEM_ID + "=?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(cartItem)});
+
+        int result = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            result = db.delete(DatabaseHandler.TABLE_CART_ITEM, DatabaseHandler.COLUMN_CART_ITEM_ID + " = ?", new String[]{String.valueOf(cartItem)});
+            cursor.close();
+        } else if (cursor != null) {
+            cursor.close();
+        }
+
+        return result;
+    }
+
+
 
 }

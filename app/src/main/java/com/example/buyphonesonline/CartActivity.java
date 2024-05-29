@@ -1,10 +1,14 @@
 package com.example.buyphonesonline;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -136,6 +140,45 @@ public class CartActivity extends AppCompatActivity implements OnQuantityChangeL
 
 
         updateTotalPrice();
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false; // Không xử lý di chuyển các mục
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int pos = viewHolder.getAdapterPosition(); // Lấy vị trí của mục bị vuốt
+                new AlertDialog.Builder(CartActivity.this)
+                        .setTitle("Bạn có chắc không?")
+                        .setMessage("Bạn muốn xóa sản phẩm này khỏi giỏ hàng!")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                int productId = productDtos.get(pos).id();
+                                productDtos.remove(pos);
+                                cartAdapter.notifyItemRemoved(pos);
+                                int result=cartRepository.deleteProduct(productId);
+                                if(result==0)
+                                    Toast.makeText(CartActivity.this, "Không tìm thấy sản phẩm hoặc lỗi!", Toast.LENGTH_SHORT).show();
+                                else{
+                                    Toast.makeText(CartActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                        })
+                        .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                cartAdapter.notifyItemChanged(pos);
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        itemTouchHelper.attachToRecyclerView(binding.rvProduct);
 
 
     }
