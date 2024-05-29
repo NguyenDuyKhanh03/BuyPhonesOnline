@@ -1,5 +1,6 @@
 package com.example.buyphonesonline;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.example.buyphonesonline.adapter.ProductListAdapter;
 import com.example.buyphonesonline.handler.DatabaseHandler;
@@ -44,6 +46,8 @@ public class HomeFragment extends Fragment {
 
     List<Product> products5=new ArrayList<>();
     ProductListAdapter adapter5;
+
+    SearchView searchView;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -494,5 +498,14 @@ public class HomeFragment extends Fragment {
         rvProduct5.setLayoutManager(new LinearLayoutManager(view.getContext(),RecyclerView.HORIZONTAL,false));
         rvProduct5.setAdapter(adapter5);
         rvProduct5.addItemDecoration(new HorizontalItemDecoration(50));
+
+        searchView=view.findViewById(R.id.search_home);
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -90,9 +90,39 @@ public class ProductRepository {
             }
             cursor.close();
         }
-
+        cursor.close();
         db.close();
         return product;
+    }
+
+    public List<Product> getListProductByTitle(String title) {
+        SQLiteDatabase db = databaseHandler.getReadableDatabase();
+
+        List<Product> products=new ArrayList<>();
+        String query = "SELECT * FROM " + DatabaseHandler.TABLE_PRODUCT +
+                " WHERE " + DatabaseHandler.PRODUCT_NAME + " LIKE ? OR " +
+                DatabaseHandler.PRODUCT_DESCRIPTION + " LIKE ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{"%" + title + "%", "%" + title + "%"});
+        if(cursor.moveToFirst()){
+            while (!cursor.isAfterLast()){
+                Product product=new Product(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getDouble(3),
+                        cursor.getString(4),
+                        cursor.getInt(5),
+                        cursor.getInt(6),
+                        cursor.getInt(7));
+                products.add(product);
+                cursor.moveToNext();
+            }
+        }
+
+        cursor.close();
+        return products;
+
     }
 
     public Product getProductById(int id) {

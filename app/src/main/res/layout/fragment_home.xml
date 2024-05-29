@@ -9,13 +9,7 @@
     android:background="@drawable/color"
     tools:context=".HomeFragment" >
 
-    <SearchView
-        android:id="@+id/search_home"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:background="@drawable/searchview_backround">
 
-    </SearchView>
 
 <!--    <ImageView-->
 <!--        android:id="@+id/imageView"-->
@@ -29,10 +23,13 @@
 <!--        android:src="@drawable/banner" />-->
 
 
-
-
-
-
+    <SearchView
+        android:id="@+id/search_home"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@drawable/searchview_backround"
+        android:focusable="true"
+        android:clickable="true" />
 
     <ScrollView
         android:layout_width="match_parent"

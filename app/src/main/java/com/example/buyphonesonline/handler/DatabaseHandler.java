@@ -122,7 +122,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return databaseHandler;
     }
-    Context context;
+
+    public static final String TABLE_PRODUCT_FTS="TABLE_PRODUCT_SEARCH";
+    private static final String CREATE_VIRTUAL_TABLE_PRODUCT_FTS =
+            "CREATE VIRTUAL TABLE IF NOT EXISTS " + TABLE_PRODUCT_FTS + " USING fts5(" +
+                    "rowid, " +
+                    PRODUCT_NAME + ", " +
+                    PRODUCT_DESCRIPTION + ");";
+
+    private static final String INSERT_DATA_INTO_PRODUCT_FTS =
+            "INSERT INTO " + TABLE_PRODUCT_FTS + " (" + PRODUCT_ID + ", " + PRODUCT_NAME + ", " + PRODUCT_DESCRIPTION + ") " +
+                    "SELECT " + PRODUCT_ID + ", " + PRODUCT_NAME + ", " + PRODUCT_DESCRIPTION + " FROM " + TABLE_PRODUCT + ";";
+
+    private static final String CREATE_TRIGGER_PRODUCT_INSERT =
+            "CREATE TRIGGER IF NOT EXISTS product_insert AFTER INSERT ON " + TABLE_PRODUCT + " " +
+                    "BEGIN " +
+                    "INSERT INTO " + TABLE_PRODUCT_FTS + " (" + PRODUCT_ID + ", " + PRODUCT_NAME + ", " + PRODUCT_DESCRIPTION + ") " +
+                    "VALUES (new." + PRODUCT_ID + ", new." + PRODUCT_NAME + ", new." + PRODUCT_DESCRIPTION + "); " +
+                    "END;";
+
     public DatabaseHandler(@Nullable Context context) {
         super(context ,DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -136,6 +154,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_CART_ITEM_TABLE);
         db.execSQL(CREATE_TABLE_ROLE);
         db.execSQL(CREATE_TABLE_USER);
+//        db.execSQL(CREATE_VIRTUAL_TABLE_PRODUCT_FTS);
+//        db.execSQL(CREATE_TRIGGER_PRODUCT_INSERT);
     }
 
     @Override

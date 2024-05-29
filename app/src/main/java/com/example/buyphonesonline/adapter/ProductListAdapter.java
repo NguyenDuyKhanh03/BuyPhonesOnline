@@ -15,6 +15,7 @@ import com.example.buyphonesonline.ProductDetailsActivity;
 import com.example.buyphonesonline.databinding.LayoutItemProductBinding;
 import com.example.buyphonesonline.models.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.MyViewHolder> {
@@ -23,6 +24,12 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     public ProductListAdapter(List<Product> listProduct) {
         this.listProduct = listProduct;
+    }
+
+    public void setFilteredList(List<Product> filteredList) {
+        this.listProduct = filteredList;
+        notifyDataSetChanged();
+
     }
 
     @NonNull
