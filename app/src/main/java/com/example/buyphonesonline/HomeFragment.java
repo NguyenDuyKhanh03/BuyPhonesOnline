@@ -677,4 +677,4 @@ public class HomeFragment extends Fragment {
         viewPager2=view.findViewById(R.id.viewPager);
         viewPager2.setAdapter(new VPAdapter(images));
     }
-}
+}////
