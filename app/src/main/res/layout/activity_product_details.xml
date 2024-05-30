@@ -193,14 +193,13 @@
             android:id="@+id/btnAddToCart"
             android:layout_width="311dp"
             android:layout_height="48dp"
-            android:layout_below="@id/tvPrice"
-            android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginEnd="16dp"
             android:text="Thêm vào giỏ"
             android:textSize="20sp"
             android:textColor="#FFFFFF"
             android:textAllCaps="false"
+            android:layout_marginBottom="16dp"
+            android:layout_alignParentBottom="true"
             android:background="@drawable/rectangle5" />
     </RelativeLayout>
 </RelativeLayout>
