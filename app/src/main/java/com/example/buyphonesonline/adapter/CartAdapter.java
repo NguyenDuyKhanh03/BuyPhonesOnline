@@ -1,36 +1,33 @@
 package com.example.buyphonesonline.adapter;
 
-import android.content.DialogInterface;
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.buyphonesonline.CartActivity;
+import com.example.buyphonesonline.GetData;
 import com.example.buyphonesonline.OnQuantityChangeListener;
+import com.example.buyphonesonline.callback.AddProductCallback;
 import com.example.buyphonesonline.databinding.ItemProductInCartBinding;
 import com.example.buyphonesonline.dtos.ProductDto;
-import com.example.buyphonesonline.handler.DatabaseHandler;
-import com.example.buyphonesonline.repository.CartRepository;
-import com.example.buyphonesonline.repository.ProductRepository;
+
 
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
 
     List<ProductDto> productDtos;
-    private final CartRepository cartRepository;
     private final OnQuantityChangeListener quantityChangeListener;
 
-    public CartAdapter(List<ProductDto> productDtos, DatabaseHandler databaseHandler,OnQuantityChangeListener quantityChangeListener) {
+    public CartAdapter(List<ProductDto> productDtos,OnQuantityChangeListener quantityChangeListener) {
         this.productDtos = productDtos;
-        ProductRepository productRepository=new ProductRepository(databaseHandler);
-        this.cartRepository=new CartRepository(databaseHandler,productRepository);
         this.quantityChangeListener = quantityChangeListener;
     }
 
@@ -65,9 +62,22 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                         productDtos.get(pos).increaseQuantity();
                         notifyItemChanged(pos);
                         binding.tvQuantity.setText(String.valueOf(productDtos.get(pos).quantity()));
-                        cartRepository.updateCartItemQuantity(productDtos.get(pos).id(),productDtos.get(pos).quantity());
-                        cartRepository.updateCart("Khanh",getTotalPrice(productDtos));
                         quantityChangeListener.onQuantityChanged();
+                        SharedPreferences userDetails=v.getContext().getSharedPreferences("userdetails", MODE_PRIVATE);
+                        String username = userDetails.getString("username", "khanh1");
+                        String url="http://192.168.2.34:8080/cart/add-product?username="+username+"&productId="+productDtos.get(pos).id()+"&quantity=1";
+                        GetData getDatax=new GetData(url, v.getContext());
+                        getDatax.addProductToCartOrReduce(new AddProductCallback() {
+                            @Override
+                            public void onSuccess(List<ProductDto> cartItems) {
+
+                            }
+
+                            @Override
+                            public void onError(String error) {
+                                Log.d("ADDPRODUCT",error);
+                            }
+                        });
                     }
                 }
             });
@@ -75,40 +85,35 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
+
                     if (position != RecyclerView.NO_POSITION) {
+                        Long productId=productDtos.get(position).id();
+                        Log.d("Ghi",String.valueOf(productId));
                         productDtos.get(position).decreaseQuantity();
                         notifyItemChanged(position);
                         binding.tvQuantity.setText(String.valueOf(productDtos.get(position).quantity()));
-                        cartRepository.updateCartItemQuantity(productDtos.get(position).id(),productDtos.get(position).quantity());
-                        cartRepository.updateCart("Khanh",getTotalPrice(productDtos));
-                        quantityChangeListener.onQuantityChanged();
-                        if(productDtos.get(position).quantity()<=0){
-                            new AlertDialog.Builder(v.getContext())
-                                    .setTitle("Bạn có chắc không?")
-                                    .setMessage("Bạn muốn xóa sản phẩm này khỏi giỏ hàng!")
-                                    .setIcon(android.R.drawable.ic_dialog_alert)
-                                    .setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                            int productId = productDtos.get(position).id();
-                                            productDtos.remove(position);
-                                            notifyDataSetChanged();
-                                            int result=cartRepository.deleteProduct(productId);
-                                            if(result==0)
-                                                Toast.makeText(v.getContext(), "Không tìm thấy sản phẩm hoặc lỗi!", Toast.LENGTH_SHORT).show();
-                                            else{
-                                                Toast.makeText(v.getContext(), "Xóa thành công", Toast.LENGTH_SHORT).show();
 
-                                            }
-                                        }
-                                    })
-                                    .setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                        }
-                                    })
-                                    .show();
-                        }
+
+                        if(productDtos.get(position).quantity()<=0)
+                            productDtos.remove(productDtos.get(position));
+                        notifyDataSetChanged();
+                        quantityChangeListener.onQuantityChanged();
+
+                        SharedPreferences userDetails=v.getContext().getSharedPreferences("userdetails", MODE_PRIVATE);
+                        String username = userDetails.getString("username", "khanh1");
+                        String url="http://192.168.2.34:8080/cart/update-product?username="+username+"&productId="+productId+"&quantity=1";
+                        GetData getDatax=new GetData(url, v.getContext());
+                        getDatax.addProductToCartOrReduce(new AddProductCallback() {
+                            @Override
+                            public void onSuccess(List<ProductDto> cartItems) {
+
+                            }
+
+                            @Override
+                            public void onError(String error) {
+
+                            }
+                        });
                     }
                 }
             });

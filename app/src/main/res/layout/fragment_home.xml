@@ -6,7 +6,6 @@
     android:layout_marginTop="16dp"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
-    android:background="@drawable/color"
     tools:context=".HomeFragment" >
 
 
@@ -25,13 +24,20 @@
 
     <SearchView
         android:id="@+id/search_home"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="46dp"
-        android:background="@drawable/searchview_backround"
+        android:background="#F2F2F2"
         android:focusable="true"
         android:clickable="true" >
 
     </SearchView>
+
+    <ImageView
+        android:id="@+id/imgCart"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/cart_icon" />
 
     <ScrollView
         android:layout_width="match_parent"

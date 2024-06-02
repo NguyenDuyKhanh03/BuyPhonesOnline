@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="169dp"
     android:layout_height="179dp"
-    android:background="@drawable/background_product">
+    android:background="@drawable/bg_item_product">
 
     <ImageView
         android:id="@+id/imgProduct"
@@ -14,14 +14,16 @@
 
     <TextView
         android:id="@+id/tvProductName"
-        android:layout_width="100dp"
-        android:layout_height="16dp"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
         android:layout_below="@id/imgProduct"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="4dp"
-        android:textSize="12sp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:fontFamily="@font/inter_medium"
         android:textColor="#343A40"
-        android:text="Asus" />
+        android:text="Ordinary Burgers" />
 
     <TextView
         android:id="@+id/tvProductPrice"
@@ -30,8 +32,8 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tvProductName"
         android:layout_marginTop="4dp"
-        android:textStyle="bold"
+        android:fontFamily="@font/inter_bold"
         android:textSize="14sp"
-        android:textColor="#343A40"
+        android:textColor="@color/price"
         android:text="20000000" />
 </RelativeLayout>

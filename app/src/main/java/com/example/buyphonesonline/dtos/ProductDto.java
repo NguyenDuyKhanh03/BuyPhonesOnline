@@ -1,13 +1,13 @@
 package com.example.buyphonesonline.dtos;
 
 public class ProductDto {
-    private int id;
+    private Long id;
     private String name;
     private String image;
     private double price;
     private int quantity;
 
-    public ProductDto(int id, String name, String image, double price, int quantity) {
+    public ProductDto(Long id, String name, String image, double price, int quantity) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -18,11 +18,11 @@ public class ProductDto {
     public ProductDto() {
     }
 
-    public int id() {
+    public Long id() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,7 +68,7 @@ public class ProductDto {
         }
     }
 
-    public ProductDto(int id, int quantity) {
+    public ProductDto(Long id, int quantity) {
         this.id = id;
         this.quantity = quantity;
     }

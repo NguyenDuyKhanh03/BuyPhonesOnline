@@ -1,16 +1,15 @@
 package com.example.buyphonesonline.models;
 
 public class Product {
-    private int id;
+    private Long id;
    private String image;
     private String name;
     private double price;
     private String description;
     private int quantity;
-    private int categoryId;
-    private int quantitySold;
+    private Long categoryId;
 
-    public Product(String image, String name, double price, String description, int quantity, int categoryId) {
+    public Product(String image, String name, double price, String description, int quantity, Long categoryId) {
         this.image = image;
         this.name = name;
         this.price = price;
@@ -19,27 +18,20 @@ public class Product {
         this.categoryId = categoryId;
     }
 
-    public Product(int id, String image, String name, double price, int quantity, int categoryId, int quantitySold) {
+    public Product() {
+    }
+
+    public Product(Long id, String image, String name, double price, int quantity, Long categoryId) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.categoryId = categoryId;
-        this.quantitySold = quantitySold;
     }
 
-    public Product(String image, String name, double price, String description, int quantity, int categoryId, int quantitySold) {
-        this.image = image;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.quantity = quantity;
-        this.categoryId = categoryId;
-        this.quantitySold = quantitySold;
-    }
 
-    public Product(int id, String image, String name, double price, String description, int quantity, int categoryId, int quantitySold) {
+    public Product(Long id, String image, String name, double price, String description, int quantity, Long categoryId) {
         this.id = id;
         this.image = image;
         this.name = name;
@@ -47,15 +39,16 @@ public class Product {
         this.description = description;
         this.quantity = quantity;
         this.categoryId = categoryId;
-        this.quantitySold = quantitySold;
     }
 
     // Getters and Setters
-    public int getId() {
+
+
+    public Long id() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -83,11 +76,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public int getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -97,14 +90,6 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public int quantitySold() {
-        return quantitySold;
-    }
-
-    public void setQuantitySold(int quantitySold) {
-        this.quantitySold = quantitySold;
     }
 
     public String description() {

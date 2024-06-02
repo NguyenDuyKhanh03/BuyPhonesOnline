@@ -1,13 +1,13 @@
 package com.example.buyphonesonline.models;
 
 public class Images {
-    private int id;
+    private Long id;
     private String name;
     private String url;
-    int relation_id;
+    Long relation_id;
     String type;
 
-    public Images(int id, String name, String url, int relation_id, String type) {
+    public Images(Long id, String name, String url, Long relation_id, String type) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -15,18 +15,18 @@ public class Images {
         this.type = type;
     }
 
-    public Images(String name, String url, int relation_id, String type) {
+    public Images(String name, String url, Long relation_id, String type) {
         this.name = name;
         this.url = url;
         this.relation_id = relation_id;
         this.type = type;
     }
 
-    public int id() {
+    public Long id() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,11 +46,11 @@ public class Images {
         this.url = url;
     }
 
-    public int relation_id() {
+    public Long relation_id() {
         return relation_id;
     }
 
-    public void setRelation_id(int relation_id) {
+    public void setRelation_id(Long relation_id) {
         this.relation_id = relation_id;
     }
 

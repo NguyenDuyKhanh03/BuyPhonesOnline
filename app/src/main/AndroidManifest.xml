@@ -14,15 +14,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BuyPhonesOnline"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".SearchActivity"
+            android:name=".activity.CateActivity"
+            android:exported="false"
+            android:label="@string/title_activity_cate"
+            android:theme="@style/Theme.BuyPhonesOnline" />
+        <activity
+            android:name=".activity.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,16 +37,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CartActivity"
+            android:name=".activity.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".ProductDetailsActivity"
+            android:name=".activity.PersonActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
-            android:exported="true"></activity>
+            android:name=".activity.ProductDetailsActivity"
+            android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.HomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.MainActivity"
             android:exported="true" />
     </application>
 

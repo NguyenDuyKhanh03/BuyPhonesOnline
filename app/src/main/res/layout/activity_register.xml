@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RegisterActivity">
+    tools:context=".activity.RegisterActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
     <EditText
         android:drawableRight="@drawable/ic_accout"
         android:id="@+id/edtUsername"
-        android:layout_width="260dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
@@ -28,7 +28,7 @@
     <EditText
         android:drawableRight="@drawable/ic_pass"
         android:id="@+id/edtPassword"
-        android:layout_width="260dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
@@ -37,7 +37,7 @@
     <EditText
         android:drawableRight="@drawable/ic_mail"
         android:id="@+id/edtEmail"
-        android:layout_width="260dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
@@ -45,13 +45,14 @@
     </EditText>
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_dkdangky"
-        android:layout_width="119dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
+        android:background="@drawable/background_icon"
         android:layout_marginTop="20dp"
         android:text="Đăng ký">
 
-    </Button>
+    </androidx.appcompat.widget.AppCompatButton>
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".activity.LoginActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
     <EditText
         android:drawableRight="@drawable/ic_accout"
         android:id="@+id/edtUsername"
-        android:layout_width="260dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="45dp"
@@ -32,29 +32,31 @@
     <EditText
         android:drawableRight="@drawable/ic_pass"
         android:id="@+id/edtPassword"
-        android:layout_width="260dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:hint="Mật khẩu">
     </EditText>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_dangnhap"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:text="Đăng nhập"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
+        android:background="@drawable/background_icon"
         android:layout_height="50dp">
-    </Button>
+    </androidx.appcompat.widget.AppCompatButton>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_dangky"
-        android:layout_width="119dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
+        android:background="@drawable/background_icon"
         android:layout_marginTop="20dp"
         android:text="Đăng ký">
 
-    </Button>
+    </androidx.appcompat.widget.AppCompatButton>
 </LinearLayout>

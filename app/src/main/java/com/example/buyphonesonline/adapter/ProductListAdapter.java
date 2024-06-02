@@ -2,6 +2,7 @@ package com.example.buyphonesonline.adapter;
 
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 
 import android.view.View;
@@ -13,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.buyphonesonline.ProductDetailsActivity;
+import com.example.buyphonesonline.activity.ProductDetailsActivity;
 import com.example.buyphonesonline.databinding.LayoutItemProductBinding;
 import com.example.buyphonesonline.models.Product;
 
@@ -66,7 +67,9 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                     for (Product p: listProduct) {
                         if(p.getName().toLowerCase().contains(charString.toLowerCase())||
                                 p.description().toLowerCase().contains(charString.toLowerCase())||
-                                String.valueOf(p.getPrice()).equals(charString)
+                                String.valueOf(p.getPrice()).equals(charString)||
+                                String.valueOf(p.getCategoryId()).equals(charString)||
+                                charString.toLowerCase().contains(getNameCate(p.getCategoryId()).toLowerCase())
                         ){
                             filteredList.add(p);
                         }
@@ -85,6 +88,20 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             }
         };
     }
+
+    public String getNameCate(Long id){
+        if(id==1)
+            return "Thịt và Hải sản";
+        else if(id==2){
+            return "Rau củ quả";
+        }else if(id==3)
+            return "Trái cây";
+        else if (id==4) {
+            return "Đồ uống";
+        }
+        return "Thịt và Hải sản";
+    }
+
 
     class MyViewHolder extends RecyclerView.ViewHolder{
 
@@ -107,12 +124,13 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(v.getContext(), ProductDetailsActivity.class);
-                    intent.putExtra("id_product",product.getId());
+                    intent.putExtra("id_product",product.id());
                     intent.putExtra("name",product.getName());
                     intent.putExtra("price",product.getPrice());
                     intent.putExtra("image",product.getImage());
                     intent.putExtra("description",product.description());
                     v.getContext().startActivities(new Intent[]{intent});
+                    Log.d("Chuyendi",String.valueOf(product.id()));
                 }
             });
 

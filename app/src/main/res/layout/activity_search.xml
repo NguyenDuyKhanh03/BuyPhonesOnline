@@ -5,21 +5,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/color"
-    tools:context=".SearchActivity">
+    android:paddingTop="20dp"
+    tools:context=".activity.SearchActivity">
 
     <SearchView
         android:id="@+id/search_home"
+        android:layout_toEndOf="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/searchview_backround">
 
 
     </SearchView>
 
+    <FrameLayout
+        android:id="@+id/frame_layout"
+
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/background_icon">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="@drawable/eva_arrow_ios_back_fill" />
+    </FrameLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_home"
+        android:text="Thịt và Hải sản" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_home"
+        android:layout_toEndOf="@id/btn1"
+        android:text="Rau củ quả" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_home"
+        android:layout_toEndOf="@id/btn2"
+        android:text="Trái cây" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_home"
+        android:layout_toEndOf="@id/btn3"
+        android:text="Đồ uống" />
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/search_home"
+        android:layout_below="@id/btn1"
         android:layout_alignParentStart="true"
         android:layout_marginTop="-12dp">
 
@@ -28,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lvProduct"

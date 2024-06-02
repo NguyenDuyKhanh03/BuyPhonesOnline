@@ -1,4 +1,4 @@
-package com.example.buyphonesonline;
+package com.example.buyphonesonline.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.buyphonesonline.HomeFragment;
+import com.example.buyphonesonline.ProfileFragment;
+import com.example.buyphonesonline.R;
 import com.example.buyphonesonline.databinding.ActivityHomeBinding;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -21,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
         binding=ActivityHomeBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
-        loadFrag(new HomeFragment(),R.id.frameFragment);
+        loadFrag(new HomeFragment(), R.id.frameFragment);
 
         binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -32,11 +35,10 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 }
                 else if(R.id.menu_cart==id){
-                    Intent intent=new Intent(HomeActivity.this, CartActivity.class);
-                    startActivity(intent);
                     return true;
                 }
                 else {
+                    loadFrag(new ProfileFragment(),R.id.frameFragment);
                     return true;
                 }
             }
