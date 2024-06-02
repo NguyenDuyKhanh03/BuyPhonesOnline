@@ -5,7 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.android.volley.AuthFailureError;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -216,7 +216,7 @@ public class GetData {
     }
 
     public void login(String username, String password, final LoginCallback callback) {
-        String loginUrl = "http://192.168.2.34:8080/user/login?username=" + username + "&password=" + password;
+        String loginUrl = "http://192.168.5.119:8080/user/login?username=" + username + "&password=" + password;
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(

@@ -65,7 +65,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                         quantityChangeListener.onQuantityChanged();
                         SharedPreferences userDetails=v.getContext().getSharedPreferences("userdetails", MODE_PRIVATE);
                         String username = userDetails.getString("username", "khanh1");
-                        String url="http://192.168.2.34:8080/cart/add-product?username="+username+"&productId="+productDtos.get(pos).id()+"&quantity=1";
+                        String url="http://192.168.5.119:8080/cart/add-product?username="+username+"&productId="+productDtos.get(pos).id()+"&quantity=1";
                         GetData getDatax=new GetData(url, v.getContext());
                         getDatax.addProductToCartOrReduce(new AddProductCallback() {
                             @Override
@@ -101,7 +101,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
                         SharedPreferences userDetails=v.getContext().getSharedPreferences("userdetails", MODE_PRIVATE);
                         String username = userDetails.getString("username", "khanh1");
-                        String url="http://192.168.2.34:8080/cart/update-product?username="+username+"&productId="+productId+"&quantity=1";
+                        String url="http://192.168.5.119:8080/cart/update-product?username="+username+"&productId="+productId+"&quantity=1";
                         GetData getDatax=new GetData(url, v.getContext());
                         getDatax.addProductToCartOrReduce(new AddProductCallback() {
                             @Override
