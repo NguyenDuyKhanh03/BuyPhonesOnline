@@ -28,9 +28,10 @@
 
         <TextView
             android:id="@+id/tvName"
-            android:layout_width="200dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:text="Americano"
+            android:fontFamily="@font/inter_semibold"
             android:textSize="13sp" />
 
         <TextView
@@ -38,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="300000"
+            android:fontFamily="@font/inter_bold"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -53,9 +55,11 @@
 
         <TextView
             android:id="@+id/tvIncrease"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:text="+"
+            android:gravity="center"
+            android:fontFamily="@font/inter_bold"
             android:textSize="13sp" />
 
         <TextView
@@ -64,14 +68,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="1"
+            android:fontFamily="@font/inter_medium"
             android:textSize="13sp" />
 
         <TextView
             android:id="@+id/tvReduce"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="20dp"
             android:text="-"
+            android:gravity="center"
+            android:fontFamily="@font/inter_bold"
             android:textSize="13sp" />
     </LinearLayout>
 </RelativeLayout>

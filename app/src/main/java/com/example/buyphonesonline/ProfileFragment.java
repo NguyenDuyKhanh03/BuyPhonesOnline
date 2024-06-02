@@ -2,6 +2,7 @@ package com.example.buyphonesonline;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -15,7 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.example.buyphonesonline.activity.LoginActivity;
 import com.example.buyphonesonline.adapter.OrderAdapter;
 import com.example.buyphonesonline.callback.AddProductCallback;
 import com.example.buyphonesonline.dtos.ProductDto;
@@ -30,11 +33,8 @@ import java.util.List;
  */
 public class ProfileFragment extends Fragment {
 
-    RecyclerView rv;
-    Button btn;
-    OrderAdapter orderAdapter;
-    List<ProductDto> productDtos=new ArrayList<>();
-
+    Button btnSignOut;
+    TextView tvName;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -58,28 +58,25 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        rv=view.findViewById(R.id.rv1);
-        btn=view.findViewById(R.id.btnShow);
+        btnSignOut=view.findViewById(R.id.btnSignOut);
+        tvName=view.findViewById(R.id.tvName);
 
 
-        orderAdapter=new OrderAdapter(productDtos);
-        rv.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL,false));
-        rv.setAdapter(orderAdapter);
-        rv.addItemDecoration(new VerticalItemDecoration(40));
-        SharedPreferences userDetails=view.getContext().getSharedPreferences("userdetails", MODE_PRIVATE);
-        String username = userDetails.getString("username", "khanh1");
-//        GetData getData=new GetData("http://192.168.2.34:8080/orders/get-order?username="+username,view.getContext());
-//        getData.getCartItemToCart(new AddProductCallback() {
-//            @Override
-//            public void onSuccess(List<ProductDto> cartItems) {
-//                productDtos.removeIf(item->item.price()>0);
-//                productDtos.addAll(cartItems);
-//                orderAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onError(String error) {
-//            }
-//        });
+        SharedPreferences userDetails =view.getContext().getSharedPreferences("userdetails", MODE_PRIVATE);
+
+        tvName.setText(userDetails.getString("username","khanh"));
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor edit = userDetails.edit();
+                edit.remove("username"); // Xóa mục "username"
+                edit.remove("isLoggedIn"); // Xóa mục "isLoggedIn"
+                edit.apply();
+                Intent intent =new Intent(v.getContext(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                v.getContext().startActivities(new Intent[]{intent});
+            }
+        });
+
     }
 }
