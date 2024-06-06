@@ -6,11 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.buyphonesonline.HomeFragment;
+import com.example.buyphonesonline.NotiFragment;
 import com.example.buyphonesonline.ProfileFragment;
 import com.example.buyphonesonline.R;
 import com.example.buyphonesonline.databinding.ActivityHomeBinding;
@@ -35,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 }
                 else if(R.id.menu_cart==id){
+                    loadFrag(new NotiFragment(),R.id.frameFragment);
                     return true;
                 }
                 else {

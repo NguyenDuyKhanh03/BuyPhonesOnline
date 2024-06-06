@@ -10,15 +10,20 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.buyphonesonline.callback.AddProductCallback;
 import com.example.buyphonesonline.callback.GetProductCallback;
 import com.example.buyphonesonline.callback.LoginCallback;
+import com.example.buyphonesonline.callback.NotificationCallback;
+import com.example.buyphonesonline.callback.OrderCallback;
 import com.example.buyphonesonline.callback.ProductCallback;
 import com.example.buyphonesonline.callback.RegisterCallback;
+import com.example.buyphonesonline.callback.UserCallBack;
 import com.example.buyphonesonline.dtos.ProductDto;
 import com.example.buyphonesonline.models.Images;
+import com.example.buyphonesonline.models.Order;
 import com.example.buyphonesonline.models.Product;
 import com.example.buyphonesonline.models.User;
 
@@ -28,17 +33,26 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class GetData {
     private String url;
     private Context context;
 
+
     public GetData(String url, Context context) {
         this.url = url;
+        this.context = context;
+    }
+
+    public GetData(Context context) {
         this.context = context;
     }
 
@@ -383,6 +397,170 @@ public class GetData {
         Long categoryId = jsonObject.getLong("categoryId");
         return new Product(id,image,name,price,description,quantity,categoryId);
     }
+
+    public void updateUser(String username,User user){
+        RequestQueue requestQueue=Volley.newRequestQueue(context);
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("address",user.address());
+            jsonObject.put("email",user.email());
+            jsonObject.put("numberPhone",user.numberPhone());
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(
+                Request.Method.PUT,
+                url,
+                jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    public void getUser(String username, final UserCallBack userCallBack){
+        RequestQueue requestQueue=Volley.newRequestQueue(context);
+        StringRequest stringRequest=new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            User user=parseJsonUser(response);
+                            userCallBack.onSuccess(user);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+        requestQueue.add(stringRequest);
+    }
+
+    private User parseJsonUser(String response) throws JSONException {
+        JSONObject jsonObject=new JSONObject(response);
+
+        String username=jsonObject.getString("username");
+        String address=jsonObject.getString("address");
+        String email=jsonObject.getString("email");
+        String numberPhone=jsonObject.getString("numberPhone");
+        return new User(username,numberPhone,email,address);
+    }
+
+
+    public void getNoti(final NotificationCallback callback){
+        RequestQueue requestQueue=Volley.newRequestQueue(context);
+        StringRequest stringRequest=new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            String utf8Response = new String(response.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+                            List<String> list=parseJsonNoti(utf8Response);
+                            callback.onSuccess(list);
+
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+        requestQueue.add(stringRequest);
+    }
+    private List<String> parseJsonNoti(String response) throws JSONException {
+        List<String> list=new ArrayList<>();
+        JSONArray jsonArray=new JSONArray(response);
+
+        for(int i=0;i<jsonArray.length();i++){
+            JSONObject jsonObject=jsonArray.getJSONObject(i);
+
+            String title=jsonObject.getString("message");
+            list.add(title);
+        }
+
+        return list;
+    }
+
+
+    public void getDataOrder(final OrderCallback callback){
+        RequestQueue requestQueue=Volley.newRequestQueue(context);
+        StringRequest stringRequest=new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            Order order=parseJsonOrder(response);
+                            callback.onSuccess(order);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+        requestQueue.add(stringRequest);
+    }
+    private Order parseJsonOrder(String response) throws JSONException {
+
+        JSONObject jsonObject=new JSONObject(response);
+        Long id=jsonObject.getLong("id");
+        Double total=jsonObject.getDouble("totalAmount");
+        String date= jsonObject.getString("orderDate");
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        inputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        outputFormat.setTimeZone(TimeZone.getDefault());
+        String orderDate="";
+        try {
+
+            Date time = inputFormat.parse(date);
+            assert time != null;
+            orderDate=outputFormat.format(time);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return new Order(id,orderDate,total);
+    }
+
+
+
 
 
 

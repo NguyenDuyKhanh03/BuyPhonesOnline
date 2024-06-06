@@ -16,9 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.buyphonesonline.activity.EditProfileActivity;
 import com.example.buyphonesonline.activity.LoginActivity;
+import com.example.buyphonesonline.activity.OrderActivity;
 import com.example.buyphonesonline.adapter.OrderAdapter;
 import com.example.buyphonesonline.callback.AddProductCallback;
 import com.example.buyphonesonline.dtos.ProductDto;
@@ -35,6 +38,8 @@ public class ProfileFragment extends Fragment {
 
     Button btnSignOut;
     TextView tvName;
+    ImageView imgEditProfile;
+    ImageView imgShowOrder;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -60,7 +65,23 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         btnSignOut=view.findViewById(R.id.btnSignOut);
         tvName=view.findViewById(R.id.tvName);
+        imgEditProfile=view.findViewById(R.id.imgEditProfile);
+        imgShowOrder=view.findViewById(R.id.imgShowOrder);
+        imgEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(), EditProfileActivity.class);
+                v.getContext().startActivities(new Intent[]{intent});
+            }
+        });
 
+        imgShowOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(), OrderActivity.class);
+                v.getContext().startActivities(new Intent[]{intent});
+            }
+        });
 
         SharedPreferences userDetails =view.getContext().getSharedPreferences("userdetails", MODE_PRIVATE);
 

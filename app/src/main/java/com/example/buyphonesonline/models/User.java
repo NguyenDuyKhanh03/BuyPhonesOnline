@@ -8,6 +8,17 @@ public class User {
     private String email;
     private String password;
     private int roleId;
+    private String address;
+    private String numberPhone;
+
+    public String address() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     private Date creationDate;
 
     public String username() {
@@ -54,6 +65,14 @@ public class User {
         return userId;
     }
 
+    public String numberPhone() {
+        return numberPhone;
+    }
+
+    public void setNumberPhone(String numberPhone) {
+        this.numberPhone = numberPhone;
+    }
+
     public User(int userId, String username, String email, String password, int roleId, Date creationDate) {
         this.userId = userId;
         this.username = username;
@@ -61,6 +80,11 @@ public class User {
         this.password = password;
         this.roleId = roleId;
         this.creationDate = creationDate;
+    }
+    public User(String username,String numberPhone,String email,String address){
+        this.email=email;
+        this.address=address;
+        this.numberPhone=numberPhone;
     }
 
     public User(String username, String email, String password, int roleId, Date creationDate) {
@@ -87,5 +111,8 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public User() {
     }
 }

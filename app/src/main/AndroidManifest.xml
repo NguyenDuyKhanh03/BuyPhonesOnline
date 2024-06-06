@@ -17,10 +17,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".activity.CateActivity"
-            android:exported="false"
-            android:label="@string/title_activity_cate"
-            android:theme="@style/Theme.BuyPhonesOnline" />
+            android:name=".activity.OrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.EditProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.SearchActivity"
             android:exported="false" />
@@ -38,9 +39,6 @@
         </activity>
         <activity
             android:name=".activity.CartActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.PersonActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ProductDetailsActivity"
