@@ -55,7 +55,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences userDetails=getSharedPreferences("userdetails", MODE_PRIVATE);
                 String username = userDetails.getString("username", "khanh1");
-                String url="http://192.168.2.34:8080/cart/add-product?username="+username+"&productId="+id+"&quantity=1";
+                String url="http://192.168.5.119:8080/cart/add-product?username="+username+"&productId="+id+"&quantity=1";
                 GetData getDatax=new GetData(url,ProductDetailsActivity.this);
                 getDatax.addProductToCartOrReduce(new AddProductCallback() {
                     @Override
@@ -73,7 +73,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
     }
     private void getListImageByIdProduct(Long id){
-        GetData getData=new GetData("http://192.168.2.34:8080/images/product/"+id,getApplicationContext());
+        GetData getData=new GetData("http://192.168.5.119:8080/images/product/"+id,getApplicationContext());
         getData.getDataImageByProductId(new ProductCallback() {
             @Override
             public void onSuccess(List<Product> products) {
