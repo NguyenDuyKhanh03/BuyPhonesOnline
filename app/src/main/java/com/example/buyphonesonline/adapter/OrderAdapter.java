@@ -17,6 +17,7 @@ import com.example.buyphonesonline.GetData;
 import com.example.buyphonesonline.activity.ProductDetailsActivity;
 import com.example.buyphonesonline.callback.AddProductCallback;
 import com.example.buyphonesonline.callback.GetProductCallback;
+import com.example.buyphonesonline.databinding.ItemOrderdetailBinding;
 import com.example.buyphonesonline.databinding.ItemProductHistoryBinding;
 import com.example.buyphonesonline.databinding.ItemProductInCartBinding;
 import com.example.buyphonesonline.dtos.ProductDto;
@@ -34,7 +35,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemProductHistoryBinding binding= ItemProductHistoryBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+        ItemOrderdetailBinding binding= ItemOrderdetailBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
         return new MyViewHolder(binding);
     }
 
@@ -50,14 +51,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
 
     class MyViewHolder extends RecyclerView.ViewHolder{
 
-        ItemProductHistoryBinding binding;
-        public MyViewHolder(@NonNull ItemProductHistoryBinding binding) {
+        ItemOrderdetailBinding binding;
+        public MyViewHolder(@NonNull ItemOrderdetailBinding binding) {
             super(binding.getRoot());
             this.binding=binding;
        }
 
         public void bindData(ProductDto product){
-            Glide.with(binding.imgProduct).load(product.image()).into(binding.imgProduct);
+            Glide.with(binding.img).load(product.image()).into(binding.img);
             binding.tvName.setText(product.name());
             binding.tvQuantity.setText("x"+String.valueOf(product.quantity()));
             double total=product.price()*product.quantity();
@@ -70,7 +71,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                     getData.getProductById(new GetProductCallback() {
                         @Override
                         public void onSuccess(Product product) {
-                            Product product1 = new Product(product.id(),product.getImage(),product.getName(),product.getPrice(),product.description(),product.getQuantity(),product.getCategoryId());
                             Intent intent = new Intent(v.getContext(), ProductDetailsActivity.class);
                             intent.putExtra("id_product", product.id());
                             intent.putExtra("name", product.getName());

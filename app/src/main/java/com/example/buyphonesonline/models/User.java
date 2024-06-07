@@ -95,6 +95,15 @@ public class User {
         this.creationDate = creationDate;
     }
 
+    public User(String username, String email, String password, String address, String numberPhone,int role) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.numberPhone = numberPhone;
+        this.roleId=role;
+    }
+
     public User(String username, String email, String password, int roleId) {
         this.username = username;
         this.email = email;

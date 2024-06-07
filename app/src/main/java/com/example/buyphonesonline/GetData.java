@@ -186,13 +186,14 @@ public class GetData {
 
     public void registerUser(User user,final RegisterCallback registerCallback) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-        user.setRoleId(1);
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("username", user.username());
             jsonBody.put("password", user.password());
             jsonBody.put("email",user.email());
-            jsonBody.put("role_id",user.roleId());
+            jsonBody.put("address",user.address());
+            jsonBody.put("numberPhone",user.numberPhone());
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -226,11 +227,12 @@ public class GetData {
             }
         };
 
+
         requestQueue.add(stringRequest);
     }
 
     public void login(String username, String password, final LoginCallback callback) {
-        String loginUrl = "http://192.168.5.119:8080/user/login?username=" + username + "&password=" + password;
+        String loginUrl = "http://192.168.2.34:8080/user/login?username=" + username + "&password=" + password;
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(

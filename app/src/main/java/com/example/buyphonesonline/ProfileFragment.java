@@ -22,18 +22,7 @@ import android.widget.TextView;
 import com.example.buyphonesonline.activity.EditProfileActivity;
 import com.example.buyphonesonline.activity.LoginActivity;
 import com.example.buyphonesonline.activity.OrderActivity;
-import com.example.buyphonesonline.adapter.OrderAdapter;
-import com.example.buyphonesonline.callback.AddProductCallback;
-import com.example.buyphonesonline.dtos.ProductDto;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
 
     Button btnSignOut;

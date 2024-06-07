@@ -45,6 +45,27 @@
     </EditText>
 
 
+    <EditText
+        android:id="@+id/edtAddress"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:hint="Adress">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/edtPhoneNumber"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:drawableRight="@drawable/ic_mail"
+        android:hint="Number Phone">
+
+    </EditText>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_dkdangky"
         android:layout_width="300dp"
