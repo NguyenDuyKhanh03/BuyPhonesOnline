@@ -76,7 +76,7 @@ public class NotiFragment extends Fragment {
 
         SharedPreferences userDetails =view.getContext().getSharedPreferences("userdetails", MODE_PRIVATE);
         String name= userDetails.getString("username","khanh");
-        getData.setUrl("http://192.168.2.34:8080/notifications/user/"+name);
+        getData.setUrl("http://192.168.5.119:8080/notifications/user/"+name);
         getData.getNoti(new NotificationCallback() {
             @Override
             public void onSuccess(List<String> list) {
@@ -90,7 +90,7 @@ public class NotiFragment extends Fragment {
             }
         });
 
-        getData.setUrl("http://192.168.2.34:8080/notifications/general");
+        getData.setUrl("http://192.168.5.119:8080/notifications/general");
         getData.getNoti(new NotificationCallback() {
             @Override
             public void onSuccess(List<String> list) {

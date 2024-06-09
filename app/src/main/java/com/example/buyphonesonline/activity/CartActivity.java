@@ -49,7 +49,7 @@ public class CartActivity extends AppCompatActivity implements OnQuantityChangeL
 
         SharedPreferences userDetails=getSharedPreferences("userdetails", MODE_PRIVATE);
         String username = userDetails.getString("username", "khanh1");
-        GetData getData=new GetData("http://192.168.2.34:8080/cart/list-product?username="+username,CartActivity.this);
+        GetData getData=new GetData("http://192.168.5.119:8080/cart/list-product?username="+username,CartActivity.this);
         getData.getCartItemToCart(new AddProductCallback() {
             @Override
             public void onSuccess(List<ProductDto> cartItems) {
@@ -96,7 +96,7 @@ public class CartActivity extends AppCompatActivity implements OnQuantityChangeL
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 SharedPreferences userDetails=getSharedPreferences("userdetails", MODE_PRIVATE);
                                 String username1 = userDetails.getString("username", "khanh1");
-                                GetData getData1=new GetData("http://192.168.2.34:8080/orders/create?username="+username1,CartActivity.this);
+                                GetData getData1=new GetData("http://192.168.5.119:8080/orders/create?username="+username1,CartActivity.this);
 
 
                                 getData1.createOrder(username);

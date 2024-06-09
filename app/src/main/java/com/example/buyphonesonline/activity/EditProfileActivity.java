@@ -23,7 +23,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         SharedPreferences userDetails=getSharedPreferences("userdetails", MODE_PRIVATE);
         String username = userDetails.getString("username", "khanh1");
-        GetData getData1=new GetData("http://192.168.2.34:8080/user/get/"+username,EditProfileActivity.this);
+        GetData getData1=new GetData("http://192.168.5.119:8080/user/get/"+username,EditProfileActivity.this);
         final User[] user1 = {new User()};
         getData1.getUser(username, new UserCallBack() {
             @Override
@@ -52,7 +52,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     Log.d("UPDATEA", "OK");
                 } else if (binding.button.getText().toString().toLowerCase().equals("cập nhật thông tin")) {
                     User user = new User(username, binding.edtPhoneNumber.getText().toString(), binding.edtEmail.getText().toString(), binding.edtAddress.getText().toString());
-                    GetData getData = new GetData("http://192.168.2.34:8080/user/update/" + username, EditProfileActivity.this);
+                    GetData getData = new GetData("http://192.168.5.119:8080/user/update/" + username, EditProfileActivity.this);
                     getData.updateUser(username, user);
                 }
             }

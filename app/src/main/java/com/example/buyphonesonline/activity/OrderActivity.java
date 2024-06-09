@@ -35,7 +35,7 @@ public class OrderActivity extends AppCompatActivity {
         String name= userDetails.getString("username","khanh");
 
         GetData getData=new GetData(OrderActivity.this);
-        getData.setUrl("http://192.168.2.34:8080/orders/get-order?username="+name);
+        getData.setUrl("http://192.168.5.119:8080/orders/get-order?username="+name);
         final Order[] order1 = {new Order()};
         getData.getDataOrder(new OrderCallback() {
             @Override
@@ -62,7 +62,7 @@ public class OrderActivity extends AppCompatActivity {
         binding.tvDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData.setUrl("http://192.168.2.34:8080/orders/get-order-detail?username="+name);
+                getData.setUrl("http://192.168.5.119:8080/orders/get-order-detail?username="+name);
                 getData.getCartItemToCart(new AddProductCallback() {
                     @Override
                     public void onSuccess(List<ProductDto> cartItems) {

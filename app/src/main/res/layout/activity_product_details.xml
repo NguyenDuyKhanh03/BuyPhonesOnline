@@ -156,9 +156,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:paddingLeft="20dp"
             android:text="Sony"
             android:textColor="#343A40"
-            android:textSize="22sp"
+            android:textSize="24sp"
             android:textStyle="italic|bold" />
 
         <TextView
@@ -168,9 +169,11 @@
             android:layout_below="@id/tvName"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
             android:text="The intuitive and intelligent WH-1000XM4 headphones bring you new improvements in industry-leading noise cancelling technology."
             android:textColor="#909090"
-            android:textSize="15sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvPrice"
@@ -178,10 +181,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvDescription"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="20dp"
             android:text="200 000đ"
             android:textColor="#FF5500"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
 
         <androidx.appcompat.widget.AppCompatButton

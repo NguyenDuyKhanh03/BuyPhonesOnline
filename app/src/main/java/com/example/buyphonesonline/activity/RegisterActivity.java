@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
                             binding.edtAddress.getText().toString(),
                             binding.edtPhoneNumber.getText().toString(),
                             1);
-                    GetData getData=new GetData("http://192.168.2.34:8080/user/register",RegisterActivity.this);
+                    GetData getData=new GetData("http://192.168.5.119:8080/user/register",RegisterActivity.this);
                     getData.registerUser(user, new RegisterCallback() {
                         @Override
                         public void onSuccess(String response) {

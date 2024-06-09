@@ -41,7 +41,7 @@ public class SearchActivity extends AppCompatActivity {
         binding.lvProduct.setLayoutManager(new GridLayoutManager(SearchActivity.this,2));
         binding.lvProduct.setAdapter(adapter);
 
-        GetData getData=new GetData("http://192.168.2.34:8080/products/get-all",SearchActivity.this);
+        GetData getData=new GetData("http://192.168.5.119:8080/products/get-all",SearchActivity.this);
         getData.getDataAllProduct(new ProductCallback() {
             @Override
             public void onSuccess(List<Product> products) {

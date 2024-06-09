@@ -108,7 +108,7 @@ public class HomeFragment extends Fragment{
         rvProduct1.setAdapter(adapter1);
         rvProduct1.addItemDecoration(new HorizontalItemDecoration(50));
 
-        GetData getData=new GetData("http://192.168.2.34:8080/products/category/1/6",view.getContext());
+        GetData getData=new GetData("http://192.168.5.119:8080/products/category/1/6",view.getContext());
         getData.getDataProductByCategoryId(new ProductCallback() {
             @Override
             public void onSuccess(List<Product> products) {
@@ -137,7 +137,7 @@ public class HomeFragment extends Fragment{
         rvProduct2.addItemDecoration(new HorizontalItemDecoration(50));
 
 
-        GetData getData2=new GetData("http://192.168.2.34:8080/products/category/2/6",view.getContext());
+        GetData getData2=new GetData("http://192.168.5.119:8080/products/category/2/6",view.getContext());
         getData2.getDataProductByCategoryId(new ProductCallback() {
             @Override
             public void onSuccess(List<Product> products) {
@@ -163,7 +163,7 @@ public class HomeFragment extends Fragment{
         rvProduct3.addItemDecoration(new HorizontalItemDecoration(50));
 
 
-        GetData getData3=new GetData("http://192.168.2.34:8080/products/category/3/6",view.getContext());
+        GetData getData3=new GetData("http://192.168.5.119:8080/products/category/3/6",view.getContext());
         getData3.getDataProductByCategoryId(new ProductCallback() {
             @Override
             public void onSuccess(List<Product> products) {
@@ -187,7 +187,7 @@ public class HomeFragment extends Fragment{
         rvProduct4.setAdapter(adapter4);
         rvProduct4.addItemDecoration(new HorizontalItemDecoration(50));
 
-        GetData getData4=new GetData("http://192.168.2.34:8080/products/category/4/6",view.getContext());
+        GetData getData4=new GetData("http://192.168.5.119:8080/products/category/4/6",view.getContext());
         getData4.getDataProductByCategoryId(new ProductCallback() {
             @Override
             public void onSuccess(List<Product> products) {
